@@ -1,5 +1,13 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allReviews = await getCollection('reviews');
+const sortedReviews = allReviews.sort((a, b) => {
+  const parseSuccess = (y) => parseFloat(y.replace(/[^0-9.]/g, '')) || 0;
+  return parseSuccess(b.data.successRate) - parseSuccess(a.data.successRate);
+});
+const topAgents = sortedReviews.slice(0, 3);
 
 const pageTitle = 'All AI Browser | Terminal Benchmarks';
 const pageDescription = 'Hardcore benchmarks and tests for AI browsers, headless agents, and Web UI automation frameworks.';
@@ -29,10 +37,10 @@ const pageDescription = 'Hardcore benchmarks and tests for AI browsers, headless
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 font-bold text-sm">
-        <a href="#benchmarks" class="px-6 py-3 bg-primary text-black hover:bg-white transition-colors border border-primary text-center uppercase tracking-widest shadow-[0_0_15px_rgba(34,197,94,0.4)]">
+        <a href="/en/reviews/" class="px-6 py-3 bg-primary text-black hover:bg-white transition-colors border border-primary text-center uppercase tracking-widest shadow-[0_0_15px_rgba(34,197,94,0.4)]">
           > execute_tests()
         </a>
-        <a href="/en/docs/" class="px-6 py-3 bg-transparent text-white border border-[#27272a] hover:border-accent hover:text-accent transition-colors text-center uppercase tracking-widest">
+        <a href="https://github.com/allaibrowser" target="_blank" class="px-6 py-3 bg-transparent text-white border border-[#27272a] hover:border-accent hover:text-accent transition-colors text-center uppercase tracking-widest">
           > read_docs()
         </a>
       </div>
@@ -54,46 +62,52 @@ const pageDescription = 'Hardcore benchmarks and tests for AI browsers, headless
         <div class="w-3 h-3 bg-[#52525b] rounded-full"></div>
         <div class="w-3 h-3 bg-[#52525b] rounded-full"></div>
         <div class="w-3 h-3 bg-[#52525b] rounded-full"></div>
-        <div class="ml-4 text-xs text-[#52525b]">root@allaibrowser:~# htop</div>
+        <div class="ml-4 text-xs text-[#52525b]">root@allaibrowser:~# htop --sort success_rate</div>
       </div>
       
       <div class="p-6 space-y-6">
-        <!-- Test 1 -->
-        <div>
-          <div class="flex justify-between text-white mb-2">
-            <span>[TASK_01] Browser Use: Expedia Flight Booking</span>
-            <span class="text-primary">PASS (89%)</span>
-          </div>
-          <div class="w-full bg-[#18181b] h-2 rounded overflow-hidden">
-            <div class="bg-primary h-full w-[89%] shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
-          </div>
-          <div class="text-[#52525b] text-xs mt-2">> DOM nodes parsed: 14,203 | Time: 14.2s | Tokens: 42k</div>
-        </div>
-
-        <!-- Test 2 -->
-        <div>
-          <div class="flex justify-between text-white mb-2">
-            <span>[TASK_02] Stagehand: React SPA Data Extraction</span>
-            <span class="text-accent">PASS (96%)</span>
-          </div>
-          <div class="w-full bg-[#18181b] h-2 rounded overflow-hidden">
-            <div class="bg-accent h-full w-[96%] shadow-[0_0_10px_rgba(168,85,247,0.8)]"></div>
-          </div>
-          <div class="text-[#52525b] text-xs mt-2">> Playwright hooks injected | Time: 4.1s | Tokens: 12k</div>
-        </div>
-
-        <!-- Test 3 -->
-        <div>
-          <div class="flex justify-between text-white mb-2">
-            <span>[TASK_03] AutoGPT: Cloudflare Turnstile Bypass</span>
-            <span class="text-red-500">FAIL (12%)</span>
-          </div>
-          <div class="w-full bg-[#18181b] h-2 rounded overflow-hidden">
-            <div class="bg-red-500 h-full w-[12%] shadow-[0_0_10px_rgba(239,68,68,0.8)]"></div>
-          </div>
-          <div class="text-[#52525b] text-xs mt-2">> ERROR: Timeout waiting for selector | Element obscured</div>
-        </div>
+        {topAgents.length > 0 ? topAgents.map((agent, index) => {
+          const rawRate = parseFloat(agent.data.successRate.replace(/[^0-9.]/g, '')) || 0;
+          let statusColor = "text-primary";
+          let barColor = "bg-primary shadow-[0_0_10px_rgba(34,197,94,0.8)]";
+          let statusText = `PASS (${agent.data.successRate})`;
+          
+          if (rawRate < 50) {
+            statusColor = "text-red-500";
+            barColor = "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]";
+            statusText = `FAIL (${agent.data.successRate})`;
+          } else if (rawRate < 90) {
+            statusColor = "text-yellow-500";
+            barColor = "bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.8)]";
+            statusText = `WARN (${agent.data.successRate})`;
+          }
+          
+          const taskId = String(index + 1).padStart(2, '0');
+          
+          return (
+            <a href={`/en/reviews/${agent.id.split('/').pop()}`} class="block group">
+              <div class="flex justify-between text-white mb-2">
+                <span class="group-hover:text-accent transition-colors">[TASK_${taskId}] {agent.data.title}</span>
+                <span class={statusColor}>{statusText}</span>
+              </div>
+              <div class="w-full bg-[#18181b] h-2 rounded overflow-hidden">
+                <div class={`${barColor} h-full w-[${rawRate}%]`}></div>
+              </div>
+              <div class="text-[#52525b] text-xs mt-2 group-hover:text-white transition-colors">
+                > DOM Parsing: {agent.data.domParsingSpeed} | Tokens: {agent.data.tokenCostPerTask} | CAPTCHA: {agent.data.captchaBypassRate}
+              </div>
+            </a>
+          );
+        }) : (
+           <div class="text-[#52525b] text-xs">> WAITING FOR STDOUT... (Run generation script)</div>
+        )}
       </div>
+    </div>
+    
+    <div class="mt-8 text-center">
+      <a href="/en/reviews/" class="text-accent hover:text-white text-sm uppercase tracking-widest font-bold underline decoration-accent/50 underline-offset-4 transition-colors">
+        [ View Full Registry ]
+      </a>
     </div>
   </section>
 

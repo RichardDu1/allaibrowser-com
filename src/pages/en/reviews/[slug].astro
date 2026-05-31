@@ -1,0 +1,119 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const reviews = await getCollection('reviews');
+  return reviews.map(review => ({
+    params: { slug: review.id.split('/').pop() },
+    props: { review },
+  }));
+}
+
+const { review } = Astro.props;
+const { Content } = await render(review);
+
+// Schema Markup
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": review.data.title,
+  "applicationCategory": "DeveloperApplication",
+  "description": review.data.description
+};
+---
+
+<BaseLayout
+  title={`${review.data.title} Benchmark & Review | All AI Browser`}
+  description={review.data.description}
+  canonical={`https://allaibrowser.com/en/reviews/${review.id.split('/').pop()}/`}
+  schema={{ type: 'SoftwareApplication', data: reviewSchema }}
+>
+  <article class="max-w-5xl mx-auto px-6 pt-32 pb-24 font-mono">
+    <!-- Breadcrumbs -->
+    <nav class="mb-10 flex items-center text-sm text-muted gap-2">
+      <a href="/en/reviews/" class="hover:text-primary transition-colors">~/benchmarks</a>
+      <span>/</span>
+      <span class="text-primary">{review.data.title.toLowerCase().replace(/\s+/g, '-')}</span>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="mb-16 border-b border-[#27272a] pb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-accent/30 bg-accent/10 rounded text-xs text-accent">
+        [AGENT_TYPE: {review.data.agentType.toUpperCase()}]
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold leading-none mb-6 text-white uppercase tracking-tighter">{review.data.title}</h1>
+      <p class="text-xl text-muted max-w-3xl leading-relaxed mb-10">{review.data.description}</p>
+      
+      <!-- Metrics Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-[#09090b] p-4 rounded border border-[#27272a]">
+          <span class="text-[10px] uppercase tracking-widest text-muted block mb-2">> dom_parse_time</span>
+          <span class="text-2xl font-bold text-white">{review.data.domParsingSpeed}</span>
+        </div>
+        <div class="bg-[#09090b] p-4 rounded border border-[#27272a]">
+          <span class="text-[10px] uppercase tracking-widest text-muted block mb-2">> captcha_bypass</span>
+          <span class="text-2xl font-bold text-white">{review.data.captchaBypassRate}</span>
+        </div>
+        <div class="bg-[#09090b] p-4 rounded border border-primary/50 relative overflow-hidden">
+          <div class="absolute inset-0 bg-primary/5"></div>
+          <span class="text-[10px] uppercase tracking-widest text-primary block mb-2 relative z-10">> success_rate</span>
+          <span class="text-3xl font-bold text-primary relative z-10">{review.data.successRate}</span>
+        </div>
+        <div class="bg-[#09090b] p-4 rounded border border-[#27272a]">
+          <span class="text-[10px] uppercase tracking-widest text-muted block mb-2">> token_cost</span>
+          <span class="text-xl font-bold text-white">{review.data.tokenCostPerTask}</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <!-- Main Content -->
+      <div class="lg:col-span-2">
+        <div class="prose prose-invert prose-lg max-w-none 
+          prose-headings:font-bold prose-headings:text-white prose-headings:uppercase prose-headings:tracking-widest
+          prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-[#27272a] prose-h2:pb-4
+          prose-h3:text-xl prose-h3:mt-8
+          prose-p:text-[#a1a1aa] prose-p:leading-relaxed
+          prose-a:text-primary hover:prose-a:underline hover:prose-a:text-primary-dark
+          prose-code:text-accent prose-code:bg-[#09090b] prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:border prose-code:border-[#27272a]
+          prose-pre:bg-[#09090b] prose-pre:border prose-pre:border-[#27272a]">
+          <Content />
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-1 space-y-6">
+        <div class="bg-[#09090b] p-6 rounded border border-primary/30">
+          <h3 class="text-sm font-bold mb-4 text-primary uppercase tracking-widest">> strengths</h3>
+          <ul class="space-y-3">
+            {review.data.pros.map(pro => (
+              <li class="text-sm text-white flex items-start gap-2">
+                <span class="text-primary font-bold">+</span>
+                <span>{pro}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-[#09090b] p-6 rounded border border-red-500/30">
+          <h3 class="text-sm font-bold mb-4 text-red-500 uppercase tracking-widest">> weaknesses</h3>
+          <ul class="space-y-3">
+            {review.data.cons.map(con => (
+              <li class="text-sm text-white flex items-start gap-2">
+                <span class="text-red-500 font-bold">-</span>
+                <span>{con}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        {review.data.githubUrl && (
+          <a href={review.data.githubUrl} target="_blank" rel="noopener nofollow" class="block text-center w-full bg-white text-black hover:bg-gray-200 px-6 py-4 rounded font-bold transition-colors text-sm uppercase tracking-widest border border-white">
+            > View on GitHub
+          </a>
+        )}
+      </aside>
+    </div>
+  </article>
+</BaseLayout>
