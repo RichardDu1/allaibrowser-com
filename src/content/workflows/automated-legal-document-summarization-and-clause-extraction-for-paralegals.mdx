@@ -1,0 +1,54 @@
+---
+title: "Automated Legal Document Summarization and Clause Extraction for Paralegals"
+description: "Streamline your legal document review process by using AI to automatically summarize contracts and extract key clauses, saving hours of manual work."
+targetRole: ["paralegal"]
+targetIntent: ["summarize-legal-documents"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["claude-ai","zapier"]
+---
+
+## Automated Legal Document Summarization and Clause Extraction for Paralegals
+
+This workflow uses **Claude AI** (by Anthropic) and **Zapier** to automatically summarize legal documents and extract specific clauses. Claude's large context window (100K tokens) is ideal for lengthy contracts.
+
+### Prerequisites
+- A Claude AI account (free tier available, Pro for heavy use)
+- A Zapier account (free tier includes 100 tasks/month)
+- Legal documents in PDF or DOCX format
+
+### Step 1: Set Up Claude AI for Document Processing
+1. Log in to [Claude AI](https://claude.ai/).
+2. Create a new project or use the chat interface.
+3. Upload a legal document (PDF or DOCX) using the attachment button.
+4. Use the following prompt to generate a summary and extract clauses:
+
+```
+Please summarize this legal document in 3-5 paragraphs. Then extract the following clauses if present: indemnification, limitation of liability, governing law, termination, confidentiality, and dispute resolution. For each clause, provide the exact text and a brief explanation.
+```
+
+### Step 2: Automate with Zapier (Optional)
+To process multiple documents automatically:
+1. Create a new Zap in Zapier.
+2. Trigger: **Email** (when new email with attachment arrives) or **Google Drive** (when new file is added).
+3. Action: **Claude AI** (use Zapier's Claude integration or Webhook).
+4. Configure the action to send the document text to Claude with the prompt from Step 1.
+5. Output the summary and clauses to a Google Doc, email, or database.
+
+### Step 3: Review and Refine
+- Always review AI-generated summaries for accuracy.
+- Adjust the prompt to include additional clauses specific to your practice area (e.g., non-compete, arbitration).
+- For sensitive documents, use Claude's privacy features (data not used for training).
+
+### Tips for Best Results
+- Use clear, well-formatted documents (OCR may be needed for scanned PDFs).
+- Break very long documents (over 100K tokens) into sections.
+- Combine with a document management system like NetDocuments or iManage for seamless workflow.
+
+### Troubleshooting
+- If Claude misses clauses, rephrase the prompt to be more specific.
+- For large volumes, consider Claude's API with a custom script.
+
+This workflow reduces document review time by up to 80%, allowing paralegals to focus on higher-value tasks.

@@ -1,0 +1,65 @@
+---
+title: "Automated Regulatory Compliance Document Drafting for Pharma Compliance Officers"
+description: "Streamline the creation of FDA/EMA compliant documents using AI-powered tools, reducing manual drafting time by 80% while ensuring accuracy and audit readiness."
+targetRole: ["pharma-compliance-officer"]
+targetIntent: ["draft-compliance-documents"]
+difficulty: "Intermediate"
+setupTime: "45 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15 hours/week"
+toolsUsed: ["zapier","openai-gpt-4","google-docs","sharepoint"]
+---
+
+## Automated Regulatory Compliance Document Drafting for Pharma Compliance Officers
+
+This workflow automates the drafting of regulatory compliance documents (e.g., SOPs, batch records, deviation reports) by integrating AI with your existing document management system.
+
+### Prerequisites
+- A Zapier account (free tier available)
+- OpenAI API key (GPT-4 recommended)
+- Google Docs or Microsoft SharePoint access
+- Basic understanding of regulatory requirements (FDA 21 CFR Part 11, EU Annex 11)
+
+### Step 1: Define Document Templates
+Create standardized templates in Google Docs or SharePoint for common compliance documents (e.g., SOP template, CAPA report). Include placeholders like `[PRODUCT_NAME]`, `[DATE]`, `[REGULATION]`.
+
+### Step 2: Set Up Data Sources
+Identify where source data resides (e.g., ERP, QMS, spreadsheets). Use Zapier to connect these sources to your workflow. For example, when a new batch record is created in your QMS, trigger the document drafting process.
+
+### Step 3: Configure AI Drafting with OpenAI
+Create a Zapier action that sends a prompt to OpenAI GPT-4. The prompt should include:
+- The document type (e.g., SOP)
+- Key parameters (product name, regulation, etc.)
+- Instructions to generate a first draft following your template structure.
+
+Example prompt:
+"""
+Generate a Standard Operating Procedure (SOP) for the manufacturing of [PRODUCT_NAME] in compliance with 21 CFR Part 211. Use the following structure: 1. Purpose, 2. Scope, 3. Responsibilities, 4. Procedure, 5. References. Include placeholders for review dates and approvals.
+"""
+
+### Step 4: Automate Document Creation
+Set up Zapier to:
+1. Receive trigger (e.g., new QMS event)
+2. Call OpenAI to generate draft
+3. Create a new document in Google Docs/SharePoint using the generated text
+4. Populate metadata (title, author, date)
+
+### Step 5: Review and Approval Workflow
+After draft creation, automatically notify the compliance team via email or Slack for review. Use Zapier to assign tasks in your project management tool (e.g., Asana, Trello).
+
+### Step 6: Version Control and Audit Trail
+Ensure every generated document is saved with version history. Use SharePoint’s built-in versioning or Google Docs’ revision history. Log all actions in a separate audit spreadsheet.
+
+### Step 7: Continuous Improvement
+Monitor document quality and update prompts/templates based on reviewer feedback. Use Zapier’s path routing to handle different document types.
+
+### Tips for Success
+- Always have a human review AI-generated content for regulatory accuracy.
+- Use GPT-4’s fine-tuning capability for domain-specific language.
+- Keep templates simple; avoid overcomplicating prompts.
+
+### Troubleshooting
+- If AI output is too generic, add more context (e.g., specific SOP number, department).
+- For large documents, break into sections and generate sequentially.
+
+This workflow reduces manual drafting time from 20 hours to 2 hours per document, with improved consistency and audit readiness.

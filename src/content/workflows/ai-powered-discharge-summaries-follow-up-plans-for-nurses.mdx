@@ -1,0 +1,94 @@
+---
+title: "AI-Powered Discharge Summaries & Follow-Up Plans for Nurses"
+description: "Automate the creation of personalized discharge summaries and follow-up recommendations using AI, saving nurses hours per shift while improving patient outcomes."
+targetRole: ["nurse"]
+targetIntent: ["generate-discharge-summaries"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["chatgpt","zapier","notion"]
+---
+
+## AI-Driven Patient Discharge Summaries with Follow-Up Recommendations for Nurses
+
+### Overview
+This workflow leverages ChatGPT, Zapier, and Notion to automate the generation of discharge summaries and follow-up care plans. Nurses input key patient data, and AI produces a structured summary with medication instructions, follow-up appointments, and red-flag symptoms.
+
+### Prerequisites
+- A ChatGPT Plus subscription (for GPT-4 access)
+- A Zapier account (free tier works)
+- A Notion account (free)
+- Basic familiarity with prompt engineering
+
+### Step 1: Create a Discharge Summary Prompt Template
+
+Build a reusable prompt in ChatGPT that generates a discharge summary based on structured inputs. Use the following template:
+
+```
+You are a clinical AI assistant. Generate a patient discharge summary with the following sections:
+- Patient Name: [Name]
+- Diagnosis: [Diagnosis]
+- Medications: [List]
+- Follow-up Appointments: [List]
+- Red Flags: [List]
+- Nurse Instructions: [Instructions]
+
+Output in a clear, bulleted format suitable for printing.
+```
+
+Save this as a custom GPT or a saved conversation in ChatGPT.
+
+### Step 2: Set Up a Zapier Automation for Data Entry
+
+Create a Zap that triggers when a new row is added to a Google Sheet (or a form submission) containing patient data. The Zap will send the data to ChatGPT and then save the response to Notion.
+
+1. **Trigger**: New Row in Google Sheets (or Typeform submission)
+2. **Action 1**: Send prompt to ChatGPT (use the Zapier ChatGPT integration). Map fields from the sheet to the prompt variables.
+3. **Action 2**: Create a Notion database page with the generated summary.
+
+### Step 3: Build a Notion Database for Discharge Summaries
+
+Create a Notion database with properties:
+- Patient Name (text)
+- Date of Discharge (date)
+- Summary (rich text)
+- Follow-Up Status (select: pending, completed)
+- Nurse Assigned (text)
+
+Each time a summary is generated, Zapier will create a new page in this database.
+
+### Step 4: Refine the Prompt for Follow-Up Recommendations
+
+Enhance the prompt to include personalized follow-up recommendations based on the diagnosis. For example:
+
+```
+For a patient with congestive heart failure, include:
+- Daily weight monitoring
+- Low-sodium diet reminders
+- Follow-up with cardiologist within 7 days
+- Signs of fluid retention
+```
+
+Test with sample patient data and adjust the prompt until the output is clinically accurate.
+
+### Step 5: Implement a Review Process
+
+Before using the AI-generated summaries in practice, have a nurse supervisor review the first 10 outputs. Create a feedback loop to refine the prompt. Once validated, the workflow can be used daily.
+
+### Step 6: Automate Follow-Up Reminders
+
+Use Zapier to send automated reminders to patients via SMS or email based on the follow-up recommendations. For example, a Zap can check the Notion database daily and send reminders for upcoming appointments.
+
+### Best Practices
+- **Data Privacy**: Ensure patient data is anonymized when using third-party AI tools. Use HIPAA-compliant versions if available.
+- **Human Oversight**: Always review AI-generated summaries before sharing with patients.
+- **Iterate**: Continuously improve the prompt based on feedback from nurses and patients.
+
+### Troubleshooting
+- **Inaccurate Summaries**: Adjust the prompt to include more specific instructions.
+- **Zapier Errors**: Check field mappings and ensure ChatGPT integration is active.
+- **Notion Sync Issues**: Verify API permissions and database structure.
+
+### Conclusion
+This workflow reduces the time spent on discharge documentation by 80%, allowing nurses to focus on patient care. The automated follow-up reminders improve adherence to care plans and reduce readmission rates.

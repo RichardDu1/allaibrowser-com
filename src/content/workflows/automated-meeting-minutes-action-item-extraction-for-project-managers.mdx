@@ -1,0 +1,77 @@
+---
+title: "Automated Meeting Minutes & Action Item Extraction for Project Managers"
+description: "Streamline your project management workflow by automatically generating meeting minutes and extracting action items using AI-powered tools like Otter.ai and Notion."
+targetRole: ["project-manager"]
+targetIntent: ["generate-meeting-minutes"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $30/mo"
+roi: "Saves 5-10 hours/week"
+toolsUsed: ["otter-ai","notion"]
+---
+
+## Automated Meeting Minutes Generation and Action Item Extraction for Project Managers
+
+### Overview
+This workflow automates the capture, transcription, and summarization of meeting minutes, then extracts action items and syncs them to your project management tool. It saves hours of manual note-taking and ensures no task is missed.
+
+### Prerequisites
+- An Otter.ai account (free or pro)
+- A Notion account (free or paid)
+- (Optional) Zapier or Make for advanced automation
+
+### Step 1: Set Up Otter.ai for Automatic Transcription
+1. **Sign up** at [Otter.ai](https://otter.ai) and install the Otter.ai browser extension (Chrome/Edge).
+2. **Connect your calendar** (Google Calendar, Outlook) so Otter automatically joins your meetings.
+3. **Configure Otter Assistant** to automatically record and transcribe meetings. Enable the "Auto-join" feature for recurring meetings.
+
+### Step 2: Create a Notion Database for Meeting Notes
+1. In Notion, create a new database called "Meeting Minutes" with properties:
+   - **Title** (text)
+   - **Date** (date)
+   - **Attendees** (multi-select)
+   - **Summary** (text)
+   - **Action Items** (text or relation to a separate Action Items database)
+   - **Transcript** (text, optional)
+2. Optionally, create a separate "Action Items" database with properties: Task, Assignee, Due Date, Status.
+
+### Step 3: Automate Minutes Generation with Otter.ai
+1. After each meeting, Otter.ai generates a transcript and an AI summary.
+2. **Review the summary** in Otter.ai – it highlights key points, decisions, and action items.
+3. **Export the summary** as a text file or copy it directly.
+
+### Step 4: Sync to Notion (Manual or Automated)
+#### Manual Method:
+1. Open your Notion Meeting Minutes database.
+2. Click "New" and paste the meeting title, date, attendees, and the Otter.ai summary.
+3. Manually extract action items and add them to the Action Items database.
+
+#### Automated Method (using Zapier or Make):
+1. **Create a Zap** (Zapier) or **Scenario** (Make) that triggers when a new Otter.ai meeting is completed.
+2. **Action:** Create a new Notion database item in Meeting Minutes with the summary and transcript.
+3. **Extract action items** using Otter.ai's built-in action item detection or use AI (ChatGPT) to parse the transcript for action items and create Notion tasks.
+
+### Step 5: Use AI to Extract Action Items (Optional)
+1. If Otter.ai doesn't extract action items automatically, use a GPT model (e.g., ChatGPT) with a prompt like:
+   > "Extract all action items from the following meeting transcript. For each, provide the task, assignee, and due date if mentioned. Format as a JSON array."
+2. Feed the transcript to the GPT and parse the output.
+3. Use Zapier's Code step or Make's HTTP module to send the extracted items to Notion.
+
+### Step 6: Review and Distribute
+1. After sync, review the Notion database for accuracy.
+2. Share the meeting minutes with attendees via Notion's share feature or email.
+3. Assign action items to team members and set due dates.
+
+### Best Practices
+- **Tag meetings** by project or client for easy filtering.
+- **Set up recurring Zaps** for regular meetings.
+- **Use Otter.ai's custom vocabulary** for technical terms.
+- **Archive old meetings** to keep the database clean.
+
+### Troubleshooting
+- **Otter not joining meetings:** Check calendar integration and permissions.
+- **Zapier not creating Notion items:** Verify Notion API connection and field mappings.
+- **Action items not extracted:** Use a more detailed GPT prompt or manually review.
+
+### Conclusion
+This workflow reduces manual effort, improves accountability, and ensures every meeting produces actionable outcomes. With Otter.ai and Notion, you can focus on leading projects instead of taking notes.

@@ -1,0 +1,57 @@
+---
+title: "Automated Grant Proposal Drafting Based on Funder Guidelines for Nonprofit Grant Writers"
+description: "Streamline grant proposal creation by automatically extracting funder guidelines and generating tailored drafts using AI, saving hours of manual research and writing."
+targetRole: ["nonprofit-grant-writer"]
+targetIntent: ["draft-grant-proposals"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["zapier","openai-gpt-4","google-docs","airtable"]
+---
+
+## Automated Grant Proposal Drafting Workflow
+
+### Overview
+This workflow automates the process of drafting grant proposals by extracting funder guidelines from emails or web pages, storing them in a database, and generating a tailored proposal draft using AI. It is designed for nonprofit grant writers who need to respond to multiple funders quickly.
+
+### Tools Needed
+- **Zapier** (Free tier available, paid plans from $19.99/mo)
+- **OpenAI GPT-4** (via API, pay-as-you-go ~$0.03/1K tokens)
+- **Google Docs** (Free)
+- **Airtable** (Free tier, paid plans from $10/mo)
+
+### Step 1: Capture Funder Guidelines
+1. Set up a **Zap** that triggers when you receive an email with a specific label (e.g., "Grant Guidelines") or when a new row is added to an Airtable base.
+2. Use Zapier's **Email Parser** or **Webhook** to extract the guideline text from the email body or a URL.
+3. Store the extracted text in an Airtable base with fields: `Funder Name`, `Guidelines Text`, `Deadline`, `Amount`.
+
+### Step 2: Prepare Proposal Template
+1. Create a Google Doc template with placeholders like `{{Funder Name}}`, `{{Project Description}}`, `{{Budget}}`.
+2. Share the doc link with Zapier (use Google Docs integration).
+
+### Step 3: Generate Draft with AI
+1. Create a Zap that triggers when a new record is added to Airtable.
+2. Add an action: **OpenAI (ChatGPT)** – Send a prompt like:
+   ```
+   You are a grant proposal writer. Based on the following funder guidelines, draft a proposal outline and key sections (Executive Summary, Problem Statement, Solution, Budget Justification). Guidelines: {{Guidelines Text}}
+   ```
+3. Map the AI response to a new field in Airtable (e.g., `Draft Proposal`).
+
+### Step 4: Populate Google Doc
+1. Add another action in the same Zap: **Google Docs** – Create a document from template.
+2. Map the Airtable fields to the placeholders in the template.
+3. The new doc will contain the AI-generated draft with funder-specific details.
+
+### Step 5: Review and Refine
+1. Grant writer opens the generated Google Doc.
+2. Review the draft, edit for tone and accuracy, and add organization-specific data.
+3. Use a second AI prompt to refine any section (e.g., "Improve the Problem Statement to be more compelling").
+
+### Tips
+- Use **Zapier's Filter** to only process guidelines with deadlines > 7 days away.
+- Store successful proposals in Airtable for future reference.
+- For privacy, ensure no sensitive data is sent to AI; use a local model if needed.
+
+### Expected Outcome
+A first draft of a grant proposal tailored to funder guidelines in under 5 minutes, reducing manual writing time by 80%.

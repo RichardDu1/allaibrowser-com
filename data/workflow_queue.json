@@ -58,5 +58,305 @@
     "role": "real-estate-agent",
     "intent": "write-listing-descriptions",
     "status": "completed"
+  },
+  {
+    "topic": "Automating Personalized Email Sequences for Real Estate Agents with AI Suggestion Engine",
+    "role": "real-estate-agent",
+    "intent": "generate-personalized-email-sequences",
+    "status": "completed"
+  },
+  {
+    "topic": "AI-Powered Multi-Platform Content Repurposing for Social Media Managers",
+    "role": "social-media-manager",
+    "intent": "repurpose-content-across-platforms",
+    "status": "completed"
+  },
+  {
+    "topic": "Automated Legal Document Summarization and Clause Extraction for Paralegals",
+    "role": "paralegal",
+    "intent": "summarize-legal-documents",
+    "status": "completed"
+  },
+  {
+    "topic": "AI-Driven Patient Discharge Summaries with Follow-Up Recommendations for Nurses",
+    "role": "nurse",
+    "intent": "generate-discharge-summaries",
+    "status": "completed"
+  },
+  {
+    "topic": "Dynamic Product Description Generation from Inventory Data for E-commerce Managers",
+    "role": "e-commerce-manager",
+    "intent": "generate-product-descriptions",
+    "status": "completed"
+  },
+  {
+    "topic": "Automated Grant Proposal Drafting Based on Funder Guidelines for Nonprofit Grant Writers",
+    "role": "nonprofit-grant-writer",
+    "intent": "draft-grant-proposals",
+    "status": "completed"
+  },
+  {
+    "topic": "AI-Powered Cold Outreach Personalization for B2B Sales Reps",
+    "role": "b2b-sales-rep",
+    "intent": "personalize-cold-outreach",
+    "status": "completed"
+  },
+  {
+    "topic": "Automated Meeting Minutes Generation and Action Item Extraction for Project Managers",
+    "role": "project-manager",
+    "intent": "generate-meeting-minutes",
+    "status": "completed"
+  },
+  {
+    "topic": "AI-Enhanced Resume Tailoring and Cover Letter Generation for Job Seekers",
+    "role": "job-seeker",
+    "intent": "tailor-resume-and-cover-letter",
+    "status": "completed"
+  },
+  {
+    "topic": "Automated Regulatory Compliance Document Drafting for Pharma Compliance Officers",
+    "role": "pharma-compliance-officer",
+    "intent": "draft-compliance-documents",
+    "status": "completed"
+  },
+  {
+    "topic": "AI-Powered Academic Paper Abstract Generation and Citation Formatting for Researchers",
+    "role": "researcher",
+    "intent": "generate-abstracts-and-citations",
+    "status": "pending"
+  },
+  {
+    "topic": "Automated Customer Support Ticket Responses with Context-Aware AI for Help Desk Agents",
+    "role": "help-desk-agent",
+    "intent": "generate-support-ticket-responses",
+    "status": "pending"
+  },
+  {
+    "topic": "AI-Driven Custom Lesson Plan Creation Based on Student Performance Data for Teachers",
+    "role": "teacher",
+    "intent": "create-custom-lesson-plans",
+    "status": "pending"
+  },
+  {
+    "topic": "Automated Press Release Generation from Company News for PR Specialists",
+    "role": "pr-specialist",
+    "intent": "generate-press-releases",
+    "status": "pending"
+  },
+  {
+    "topic": "AI-Powered Personalized Fitness Program Descriptions for Personal Trainers",
+    "role": "personal-trainer",
+    "intent": "create-fitness-program-descriptions",
+    "status": "pending"
+  },
+  {
+    "topic": "Automated Technical Documentation Generation from Code Comments for Software Developers",
+    "role": "software-developer",
+    "intent": "generate-technical-documentation",
+    "status": "pending"
+  },
+  {
+    "topic": "AI-Enhanced Event Invitation and Follow-Up Sequence for Event Planners",
+    "role": "event-planner",
+    "intent": "create-event-invitations-and-follow-ups",
+    "status": "pending"
+  },
+  {
+    "topic": "Automated Case Study Drafting from Customer Interviews for Marketing Managers",
+    "role": "marketing-manager",
+    "intent": "draft-case-studies",
+    "status": "pending"
+  },
+  {
+    "topic": "AI-Powered Personalized Wedding Vow Generation for Couples",
+    "role": "couple",
+    "intent": "generate-personalized-vows",
+    "status": "pending"
+  },
+  {
+    "topic": "Automated FAQ Generation from Support Chat Logs for Knowledge Base Managers",
+    "role": "knowledge-base-manager",
+    "intent": "generate-faqs",
+    "status": "pending"
+  },
+  {
+    "topic": "Automating Competitor SEO Analysis for E-commerce Product Pages",
+    "role": "ecommerce-seo-manager",
+    "intent": "automate-competitor-seo-research",
+    "status": "pending"
+  },
+  {
+    "topic": "Generating Personalized Legal Contract Clauses from Prior Agreements",
+    "role": "corporate-lawyer",
+    "intent": "generate-custom-clauses",
+    "status": "pending"
+  },
+  {
+    "topic": "Cross-Referencing Clinical Trial Results with Patient Histories for Drug Safety Alerts",
+    "role": "pharmacovigilance-scientist",
+    "intent": "cross-reference-trials",
+    "status": "pending"
+  },
+  {
+    "topic": "Extracting and Summarizing Customer Complaints from Social Media for Product Teams",
+    "role": "product-manager-software",
+    "intent": "extract-customer-feedback",
+    "status": "pending"
+  },
+  {
+    "topic": "Matching Job Descriptions to Candidate Resumes Using Semantic Search",
+    "role": "recruiter",
+    "intent": "match-jobs-candidates",
+    "status": "pending"
+  },
+  {
+    "topic": "Generating FAQ Content from Support Ticket Histories for Self-Service Portals",
+    "role": "customer-support-manager",
+    "intent": "generate-faq-from-tickets",
+    "status": "pending"
+  },
+  {
+    "topic": "Automating Supplier Compliance Checks Against Regulatory Updates",
+    "role": "supply-chain-compliance-officer",
+    "intent": "automate-supplier-compliance",
+    "status": "pending"
+  },
+  {
+    "topic": "Creating Investment Research Summaries from Earnings Call Transcripts",
+    "role": "financial-analyst",
+    "intent": "summarize-earnings-calls",
+    "status": "pending"
+  },
+  {
+    "topic": "Identifying Patent Prior Art Using Domain-Specific Search Engines",
+    "role": "patent-attorney",
+    "intent": "find-prior-art",
+    "status": "pending"
+  },
+  {
+    "topic": "Generating Draft Press Releases from Product Updates and Data Sheets",
+    "role": "pr-specialist-tech",
+    "intent": "generate-press-releases",
+    "status": "pending"
+  },
+  {
+    "topic": "Cross-Referencing Inventory Data with Supplier Catalogs for Alternative Sourcing",
+    "role": "procurement-manager",
+    "intent": "find-alternative-suppliers",
+    "status": "pending"
+  },
+  {
+    "topic": "Automating Brand Sentiment Analysis Across Multiple Review Platforms",
+    "role": "brand-manager",
+    "intent": "analyze-sentiment-reviews",
+    "status": "pending"
+  },
+  {
+    "topic": "Generating Study Guides from Lecture Transcripts and Textbooks",
+    "role": "university-professor",
+    "intent": "create-study-guides",
+    "status": "pending"
+  },
+  {
+    "topic": "Matching Grant Opportunities to Research Projects Using AI Search",
+    "role": "research-scientist",
+    "intent": "find-grant-opportunities",
+    "status": "pending"
+  },
+  {
+    "topic": "Extracting Key Action Items from Meeting Transcripts and Emailing Participants",
+    "role": "project-manager",
+    "intent": "extract-action-items",
+    "status": "pending"
+  },
+  {
+    "topic": "Automating Travel Itinerary Creation from Booking Confirmations and Preferences",
+    "role": "travel-agent",
+    "intent": "create-itineraries",
+    "status": "pending"
+  },
+  {
+    "topic": "Generating Personalized Learning Paths from Employee Skill Gaps and Company Goals",
+    "role": "hr-learning-development-manager",
+    "intent": "create-learning-paths",
+    "status": "pending"
+  },
+  {
+    "topic": "Cross-Referencing Medical Literature with Patient Symptoms for Diagnostic Suggestions",
+    "role": "general-practitioner",
+    "intent": "suggest-diagnoses",
+    "status": "pending"
+  },
+  {
+    "topic": "Automating Social Media Post Scheduling Based on Trending Topics",
+    "role": "social-media-manager",
+    "intent": "schedule-trending-posts",
+    "status": "pending"
+  },
+  {
+    "topic": "Generating Customized Sales Proposals from CRM Data and Public Company Info",
+    "role": "b2b-sales-representative",
+    "intent": "generate-proposals",
+    "status": "pending"
+  },
+  {
+    "topic": "Automating Competitor Price Monitoring and Alerting for E-commerce Managers",
+    "role": "e-commerce-manager",
+    "intent": "monitor-competitor-prices",
+    "status": "pending"
+  },
+  {
+    "topic": "Generating SEO-Optimized FAQ Content for Product Pages",
+    "role": "content-marketer",
+    "intent": "generate-seo-faqs",
+    "status": "pending"
+  },
+  {
+    "topic": "Extracting and Summarizing Key Legal Clauses from Vendor Contracts",
+    "role": "procurement-officer",
+    "intent": "summarize-legal-clauses",
+    "status": "pending"
+  },
+  {
+    "topic": "Cross-Referencing Patient Symptoms with Clinical Trials for Rare Diseases",
+    "role": "medical-researcher",
+    "intent": "match-symptoms-trials",
+    "status": "pending"
+  },
+  {
+    "topic": "Aggregating and Summarizing Customer Reviews for Product Improvement",
+    "role": "product-manager",
+    "intent": "aggregate-review-insights",
+    "status": "pending"
+  },
+  {
+    "topic": "Identifying and Summarizing Patent Prior Art for R&D Teams",
+    "role": "patent-analyst",
+    "intent": "search-prior-art",
+    "status": "pending"
+  },
+  {
+    "topic": "Automating Job Description Generation and Skill Matching from CVs",
+    "role": "hr-recruiter",
+    "intent": "generate-job-descriptions",
+    "status": "pending"
+  },
+  {
+    "topic": "Extracting Financial Metrics from Earnings Calls and Generating Reports",
+    "role": "financial-analyst",
+    "intent": "extract-earnings-metrics",
+    "status": "pending"
+  },
+  {
+    "topic": "Creating Personalized Learning Paths from Employee Skill Gaps",
+    "role": "learning-developer",
+    "intent": "generate-learning-paths",
+    "status": "pending"
+  },
+  {
+    "topic": "Generating Localized Marketing Copy Based on Regional Search Trends",
+    "role": "marketing-manager",
+    "intent": "create-localized-copy",
+    "status": "pending"
   }
 ]
