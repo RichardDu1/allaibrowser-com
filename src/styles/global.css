@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* === TRUE BESPOKE REDESIGN: ALL AI BROWSER ===
+   Aesthetic: Cyberpunk Hacker / Terminal
+   Vibe: Pitch Black, Monospace, Glowing Neon Green/Purple === */
+
+@theme {
+  --color-primary: #10B981; /* Emerald Green */
+  --color-primary-dark: #059669;
+  --color-surface: #000000;
+  --color-neutral: #09090b;
+  --color-border: #27272a;
+  --color-muted: #52525b;
+  --color-text: #a1a1aa;
+  
+  --color-accent: #A855F7; /* Electric Purple */
+
+  /* Terminal Font Stack */
+  --font-sans: 'Fira Code', 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-mono: 'Fira Code', 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { 
+  font-family: var(--font-mono); 
+  color: var(--color-text); 
+  background-color: var(--color-surface); 
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 { 
+  color: #ffffff; 
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+a { transition: color 0.2s, text-shadow 0.2s; }
+a:hover { color: var(--color-primary); text-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
+
+.scanline {
+  position: relative;
+}
+.scanline::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
