@@ -1,0 +1,44 @@
+---
+title: "Automated SEO Product Description Generator from Supplier Specs & Reviews"
+description: "Streamline your e-commerce content creation by transforming raw supplier data and customer reviews into SEO-optimized product descriptions using AI and automation tools."
+targetRole: ["ecommerce-content-manager"]
+targetIntent: ["generate-product-descriptions"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["zapier","openai-gpt-4","google-docs","surfer-seo"]
+---
+
+## Step 1: Collect Supplier Specs and Customer Reviews
+
+- **Source Data**: Gather product specifications from supplier feeds (CSV, API) and customer reviews from your e-commerce platform (Shopify, WooCommerce, Amazon).
+- **Centralize**: Use **Google Sheets** or **Airtable** to store raw data: product name, features, dimensions, materials, pros/cons from reviews.
+
+## Step 2: Set Up Automation with Zapier
+
+- **Trigger**: New row in Google Sheets (or new product in Shopify).
+- **Action**: Send data to **OpenAI GPT-4** via Zapier's OpenAI integration.
+- **Prompt Template**: "Create an SEO-optimized product description (150-200 words) for [product name]. Key features: [features]. Customer praise: [positive review snippets]. Address common concerns: [negative review snippets]. Include primary keyword: [keyword]. Use persuasive tone."
+
+## Step 3: Generate Descriptions with GPT-4
+
+- **Configure**: In Zapier, map fields from your sheet to the prompt.
+- **Test**: Run a sample to ensure output quality. Adjust prompt for brand voice (e.g., formal, friendly).
+- **Output**: GPT-4 returns a description, which Zapier stores in a new column or sends to your CMS.
+
+## Step 4: Optimize for SEO with Surfer SEO
+
+- **Analyze**: Copy the generated description into **Surfer SEO**'s Content Editor.
+- **Adjust**: Surfer suggests keyword density, headings, and word count based on top-ranking pages. Tweak the description accordingly.
+- **Automate**: Use Surfer's API to check descriptions in bulk (optional).
+
+## Step 5: Review and Publish
+
+- **Human Review**: Check for accuracy, brand alignment, and readability. Use **Google Docs** for collaborative editing.
+- **Publish**: Upload final descriptions to your e-commerce platform via CSV import or direct API.
+
+## Step 6: Monitor Performance
+
+- **Track**: Use Google Analytics or e-commerce analytics to monitor conversion rates and organic traffic for optimized products.
+- **Iterate**: Update descriptions based on performance data and new reviews.

@@ -1,0 +1,95 @@
+---
+title: "Automating Personalized Follow-Up Emails for SaaS Trial Users Based on In-App Behavior"
+description: "Leverage AI and automation to analyze in-app user actions and generate tailored follow-up email drafts, boosting trial-to-paid conversion rates while saving hours of manual work."
+targetRole: ["saas-marketing-manager"]
+targetIntent: ["personalize-email-drafts"]
+difficulty: "Intermediate"
+setupTime: "2-3 Hours"
+costEstimate: "$0 - $100/mo"
+roi: "Saves 15 hours/week, increases trial conversions by 20%"
+toolsUsed: ["zapier","openai-gpt","intercom"]
+---
+
+## Overview
+
+This workflow automates the creation of personalized follow-up emails for SaaS trial users by combining in-app behavior tracking, AI-generated content, and email automation. It uses **Intercom** to capture user events, **Zapier** to trigger workflows, and **OpenAI GPT** to draft context-aware email copy. The result: each trial user receives a unique email referencing their specific actions (e.g., feature usage, time spent, pages visited), increasing relevance and conversion.
+
+## Prerequisites
+
+- Active accounts on **Intercom** (or any product analytics tool with webhook/API), **Zapier**, and **OpenAI** (API key).
+- Admin access to your SaaS app to set up event tracking.
+- Basic familiarity with Zapier's interface.
+
+## Step-by-Step Guide
+
+### 1. Set Up In-App Event Tracking in Intercom
+
+- Log in to Intercom and navigate to **Settings > Data > Events**.
+- Define key trial user events: `signed_up`, `completed_onboarding`, `used_feature_X`, `invited_team`, `upgraded`, etc.
+- Install Intercom's SDK in your app (or use Segment/other analytics) to send these events automatically.
+- Test by performing actions in your app and verifying events appear in Intercom's user timeline.
+
+### 2. Create a Zapier Webhook Trigger for New Events
+
+- In Zapier, create a new Zap.
+- Choose **Webhooks by Zapier** as the trigger app, select **Catch Hook**.
+- Copy the webhook URL provided.
+- In Intercom, go to **Settings > Developer Hub > Webhooks** and add a new webhook pointing to the Zapier URL. Subscribe to the events you want to trigger follow-ups (e.g., `completed_onboarding`, `used_feature_X`).
+- Test the connection by triggering an event in your app; Zapier should receive the data.
+
+### 3. Configure AI-Powered Email Draft Generation
+
+- Add a new action step in your Zap: choose **OpenAI (ChatGPT)** as the app, action **Send Prompt**.
+- In the prompt field, construct a template that includes user data from the trigger. Example:
+  ```
+  Write a personalized follow-up email for a SaaS trial user.
+  User details:
+  - Name: {{name}}
+  - Company: {{company}}
+  - Recent action: {{event_name}} at {{event_time}}
+  - Features used: {{features_list}}
+  - Days left in trial: {{trial_days_remaining}}
+
+  Email should:
+  - Reference the specific action they took.
+  - Offer a relevant tip or resource.
+  - Include a clear call-to-action to upgrade or book a demo.
+  - Keep tone friendly and helpful.
+  ```
+- Map dynamic fields from the trigger step (e.g., `{{name}}`, `{{event_name}}`).
+- Set the model to `gpt-4` for best quality, and adjust temperature to 0.7 for creativity.
+- Test the step to ensure a coherent email draft is generated.
+
+### 4. Send the Email via Your Email Platform
+
+- Add another action step: choose your email service (e.g., **Gmail**, **Outlook**, **SendGrid**, or **Intercom** itself).
+- Configure the email:
+  - **To**: {{user_email}} from trigger.
+  - **Subject**: Use a template like "Quick tip based on your {{event_name}}".
+  - **Body**: Insert the output from the OpenAI step (the generated email draft).
+- Optionally, add a delay step (e.g., wait 1 hour after event) before sending to avoid overwhelming users.
+- Turn on the Zap.
+
+### 5. Monitor and Optimize
+
+- Track email open rates, click-through rates, and trial conversions.
+- Use A/B testing by creating multiple Zap versions with different prompts or email platforms.
+- Refine the prompt to include more personalization (e.g., industry, role) or adjust tone based on user segment.
+- Regularly review the generated drafts to ensure quality and brand consistency.
+
+## Best Practices
+
+- **Respect Privacy**: Ensure you have user consent for tracking and emailing. Include an unsubscribe link.
+- **Avoid Over-Automation**: Limit follow-ups to 2-3 per trial period. Use Zapier filters to skip users who already upgraded.
+- **Human Review**: For high-value accounts, consider sending drafts to a sales rep for approval before sending.
+- **Iterate on Events**: Focus on high-intent events like "created a project" or "invited team" rather than passive events like "logged in".
+
+## Troubleshooting
+
+- **No email generated**: Check OpenAI API key and prompt formatting. Ensure the trigger step passes all required fields.
+- **Emails not sending**: Verify email service connection and that the recipient email is valid.
+- **Duplicate emails**: Add a Zapier filter to check if a follow-up was already sent for that event+user combination.
+
+## Conclusion
+
+By implementing this workflow, you'll deliver timely, relevant follow-ups that resonate with trial users' actual behavior. The combination of Intercom's event tracking, Zapier's automation, and OpenAI's language generation creates a scalable personalization engine that drives conversions without manual effort.

@@ -1,0 +1,64 @@
+---
+title: "Automating Patient Discharge Summaries from EHR Data"
+description: "Streamline the creation of discharge summaries by extracting key data from EHR systems and generating structured, compliant documents using AI automation."
+targetRole: ["hospital-discharge-planner"]
+targetIntent: ["generate-discharge-summaries"]
+difficulty: "Intermediate"
+setupTime: "2-3 Hours"
+costEstimate: "$50 - $200/mo"
+roi: "Saves 15 hours/week per discharge planner"
+toolsUsed: ["zapier","openai-gpt-4","ehr-integration-tool"]
+---
+
+## Automating Patient Discharge Summaries from EHR Data
+
+### Overview
+This workflow automates the generation of patient discharge summaries by pulling structured data from your EHR system, processing it with AI, and outputting a formatted summary ready for review and signature.
+
+### Prerequisites
+- Access to an EHR system with API or export capabilities (e.g., Epic, Cerner)
+- A Zapier account (free tier available)
+- An OpenAI API key (GPT-4 recommended)
+- A document storage solution (e.g., Google Drive, Dropbox)
+
+### Step 1: Extract Patient Data from EHR
+1. **Identify the trigger event**: In your EHR, set up a webhook or scheduled export for when a discharge order is placed.
+2. **Use Zapier to capture the data**: Create a new Zap with a webhook trigger that receives the discharge event payload. Map fields like patient name, MRN, admission date, discharge date, diagnoses, medications, and follow-up instructions.
+3. **Test the connection**: Ensure data flows correctly into Zapier.
+
+### Step 2: Structure the Data for AI Processing
+1. **Add a Formatter step in Zapier**: Use the "Text" formatter to clean and concatenate fields into a single prompt string.
+2. **Create a prompt template**: Example:
+   ```
+   Generate a discharge summary for patient {{patient_name}} (MRN: {{mrn}}).
+   Admission: {{admission_date}} to {{discharge_date}}.
+   Diagnoses: {{diagnoses}}.
+   Medications: {{medications}}.
+   Follow-up: {{follow_up}}.
+   Use professional medical language and include sections: Reason for Admission, Hospital Course, Discharge Medications, Follow-up Plan.
+   ```
+
+### Step 3: Generate Summary with OpenAI
+1. **Add an OpenAI step in Zapier**: Choose the "Create Completion" action.
+2. **Configure the model**: Use `gpt-4` (or `gpt-3.5-turbo` for cost savings).
+3. **Set parameters**: Temperature 0.3 for consistency, max tokens 1500.
+4. **Map the prompt**: Use the formatted text from Step 2 as the prompt.
+5. **Test the output**: Ensure the AI returns a coherent summary.
+
+### Step 4: Store and Notify
+1. **Save the summary**: Add a Google Drive or Dropbox action to create a new document with the summary content. Name it `Discharge_Summary_{{patient_name}}_{{date}}.txt`.
+2. **Notify the discharge planner**: Use an email or Slack action to send a link to the generated document.
+3. **Include a review step**: Optionally, add a manual approval step using Zapier's "Delay" or a custom form.
+
+### Step 5: Compliance and Security
+- Ensure all data is encrypted in transit and at rest.
+- Use HIPAA-compliant services (Zapier offers BAA, OpenAI offers HIPAA compliance on enterprise plans).
+- Regularly audit generated summaries for accuracy.
+
+### Troubleshooting
+- **Data mapping errors**: Check field names in EHR export.
+- **AI hallucinations**: Lower temperature and add strict formatting instructions.
+- **Cost management**: Monitor OpenAI usage; set a monthly budget.
+
+### Conclusion
+This automation reduces manual effort, minimizes errors, and speeds up the discharge process, allowing hospital staff to focus on patient care.

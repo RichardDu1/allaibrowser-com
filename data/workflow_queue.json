@@ -1,0 +1,62 @@
+[
+  {
+    "topic": "Automating Drafting of Personalized Follow-Up Emails for SaaS Trial Users Based on In-App Behavior",
+    "role": "saas-marketing-manager",
+    "intent": "personalize-email-drafts",
+    "status": "completed"
+  },
+  {
+    "topic": "Generating Customized Grant Proposal Outlines for Nonprofit Organizations Using Past Successful Proposals",
+    "role": "nonprofit-grant-writer",
+    "intent": "generate-proposal-outlines",
+    "status": "completed"
+  },
+  {
+    "topic": "Creating SEO-Optimized Product Descriptions for E-commerce from Supplier Specs and Reviews",
+    "role": "ecommerce-content-manager",
+    "intent": "generate-product-descriptions",
+    "status": "completed"
+  },
+  {
+    "topic": "Transforming Raw Meeting Transcripts into Actionable Minutes with Assigned Tasks and Deadlines",
+    "role": "project-manager",
+    "intent": "convert-transcripts-to-minutes",
+    "status": "completed"
+  },
+  {
+    "topic": "Drafting Customized Cold Outreach Messages for B2B Sales Based on LinkedIn Profile Analysis",
+    "role": "b2b-sales-development-rep",
+    "intent": "draft-cold-outreach",
+    "status": "completed"
+  },
+  {
+    "topic": "Generating Multilingual Social Media Posts for Global Brands from a Single English Brief",
+    "role": "global-social-media-manager",
+    "intent": "localize-social-posts",
+    "status": "completed"
+  },
+  {
+    "topic": "Creating Personalized Lesson Plans for Students with Learning Differences Using IEP Data",
+    "role": "special-education-teacher",
+    "intent": "create-iep-lesson-plans",
+    "status": "completed"
+  },
+  {
+    "topic": "Automating Generation of Patient Discharge Summaries from EHR Data for Hospital Staff",
+    "role": "hospital-discharge-planner",
+    "intent": "generate-discharge-summaries",
+    "status": "completed"
+  },
+  {
+    "topic": "Drafting Compliance-First Responses to Customer Complaints in Regulated Industries (Finance, Healthcare)",
+    "role": "compliance-officer",
+    "intent": "draft-complaint-responses",
+    "status": "completed"
+  },
+  {
+    "topic": "Generating Personalized Real Estate Listing Descriptions from Property Features and Neighborhood Data",
+    "role": "real-estate-agent",
+    "intent": "write-listing-descriptions",
+    "status": "completed"
+  }
+]

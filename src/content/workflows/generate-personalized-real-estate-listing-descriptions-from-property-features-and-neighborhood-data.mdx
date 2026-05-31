@@ -1,0 +1,39 @@
+---
+title: "Generate Personalized Real Estate Listing Descriptions from Property Features and Neighborhood Data"
+description: "Automate the creation of compelling, personalized real estate listings by combining property features with neighborhood insights using AI tools like ChatGPT and Zapier."
+targetRole: ["real-estate-agent"]
+targetIntent: ["write-listing-descriptions"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["chatgpt","zapier","google-sheets"]
+---
+
+## Step 1: Gather Property Features and Neighborhood Data
+
+Collect all relevant property details (square footage, bedrooms, bathrooms, amenities, etc.) and neighborhood data (school ratings, nearby parks, public transit, crime stats, etc.). Store this data in a structured format like a Google Sheet.
+
+## Step 2: Set Up a Zapier Automation
+
+Create a Zap that triggers when a new row is added to your Google Sheet. Use the "New Spreadsheet Row" trigger in Google Sheets. Then add an action to send the row data to ChatGPT.
+
+## Step 3: Configure ChatGPT for Listing Generation
+
+In Zapier, use the ChatGPT action "Create Completion". Set up a prompt like:
+
+"Write a compelling real estate listing description for a property with the following features: [Feature1], [Feature2], [Feature3]. The neighborhood offers [NeighborhoodData]. Highlight the best aspects in a warm, inviting tone. Keep it under 200 words."
+
+Map the dynamic fields from your Google Sheet to the prompt.
+
+## Step 4: Output the Description
+
+Add a final action in Zapier to update the Google Sheet with the generated description, or send it to your CRM via email or webhook.
+
+## Step 5: Review and Personalize
+
+Before publishing, review the AI-generated description. Add any unique selling points or personal touches to ensure accuracy and authenticity.
+
+## Step 6: Publish
+
+Copy the final description to your MLS, website, or social media channels.
