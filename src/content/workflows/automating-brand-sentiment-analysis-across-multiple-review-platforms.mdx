@@ -1,0 +1,62 @@
+---
+title: "Automating Brand Sentiment Analysis Across Multiple Review Platforms"
+description: "A step-by-step guide for brand managers to automate the collection and analysis of customer reviews from platforms like Google, Yelp, and Trustpilot, using AI to extract sentiment and actionable insights."
+targetRole: ["brand-manager"]
+targetIntent: ["analyze-sentiment-reviews"]
+difficulty: "Intermediate"
+setupTime: "2-3 hours initial setup, then 30 minutes weekly maintenance"
+costEstimate: "$50 - $200/mo"
+roi: "Saves 15 hours/week and improves response time by 50%"
+toolsUsed: ["zapier","google-sheets","openai-api","tableau"]
+---
+
+## Automating Brand Sentiment Analysis Across Multiple Review Platforms
+
+### Overview
+As a brand manager, monitoring customer sentiment across multiple review platforms is critical for protecting your brand reputation. This workflow automates the collection, analysis, and visualization of reviews from Google, Yelp, and Trustpilot, using AI to classify sentiment and highlight key themes.
+
+### Prerequisites
+- A Zapier account (free tier works for low volume)
+- A Google Sheets account
+- An OpenAI API key (or use a GPT like ChatGPT for manual analysis)
+- A Tableau Public account (free) for dashboards
+
+### Step 1: Set Up Review Collection with Zapier
+1. **Create a Zap** that triggers on new reviews from each platform:
+   - For Google: Use the "Google My Business" integration (trigger: New Review).
+   - For Yelp: Use the "Yelp" integration (trigger: New Review).
+   - For Trustpilot: Use the "Trustpilot" integration (trigger: New Review).
+2. **Action**: Add a step to send the review data (text, rating, platform, date) to a Google Sheet row.
+3. **Repeat** for each platform, appending to the same sheet.
+
+### Step 2: Analyze Sentiment with OpenAI API
+1. **Create a new Zap** that triggers on new rows in your Google Sheet.
+2. **Action**: Use the OpenAI (ChatGPT) integration. Configure the prompt:
+   ```
+   Analyze the sentiment of the following review. Respond with one word: Positive, Negative, or Neutral. Also extract up to 3 key themes (e.g., "customer service", "product quality") as a comma-separated list.
+   Review: {{review_text}}
+   ```
+3. **Output**: Parse the response and update the same row in Google Sheets with sentiment and themes.
+
+### Step 3: Build a Dashboard in Tableau
+1. Connect Tableau to your Google Sheet.
+2. Create sheets:
+   - Sentiment breakdown (pie chart)
+   - Sentiment trend over time (line chart)
+   - Top themes (bar chart)
+3. Combine into a dashboard and publish to Tableau Public (or Tableau Server for private).
+
+### Step 4: Automate Alerts (Optional)
+- Use Zapier to send an email or Slack message when a negative review is detected (sentiment = "Negative").
+
+### Best Practices
+- **Data Privacy**: Ensure you comply with platform terms; do not store personal data.
+- **Review Sampling**: For high volume, sample reviews or use batch processing.
+- **Continuous Improvement**: Regularly update your prompt to capture new themes.
+
+### Troubleshooting
+- **API Limits**: Monitor OpenAI usage; set up billing alerts.
+- **Duplicate Reviews**: Use Zapier filters to check for existing review IDs.
+
+### Conclusion
+This workflow gives you real-time visibility into brand sentiment, enabling proactive reputation management. Start with one platform and expand.

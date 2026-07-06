@@ -1,0 +1,59 @@
+---
+title: "Generating Personalized Legal Contract Clauses from Prior Agreements"
+description: "A step-by-step guide for corporate lawyers to leverage AI tools to extract, customize, and generate contract clauses from a library of prior agreements, ensuring consistency and efficiency."
+targetRole: ["corporate-lawyer"]
+targetIntent: ["generate-custom-clauses"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["claude-ai","notion","zapier"]
+---
+
+## Overview
+
+This workflow enables corporate lawyers to quickly generate personalized contract clauses by analyzing a repository of prior agreements. Using AI tools like Claude, you can extract standard clauses, customize them for new contexts, and maintain a consistent legal style.
+
+## Prerequisites
+
+- A collection of prior agreements in digital format (PDF, DOCX, or TXT)
+- Access to Claude AI (claude.ai) or similar LLM
+- Notion account for clause library management
+- (Optional) Zapier account for automation
+
+## Step 1: Build a Clause Library in Notion
+
+1. Create a new Notion database with properties: `Clause Name`, `Type` (e.g., Indemnification, Termination), `Source Agreement`, `Jurisdiction`, `Date Used`.
+2. For each prior agreement, extract key clauses manually or using Claude (see Step 2) and add them as entries.
+3. Tag clauses with relevant keywords (e.g., "SaaS", "M&A", "Governing Law").
+
+## Step 2: Extract Clauses Using Claude
+
+1. Open Claude and upload a prior agreement (PDF or DOCX).
+2. Prompt: "Extract all standard clauses from this agreement. For each clause, provide the clause title, full text, and any key variables (e.g., party names, dates, amounts)."
+3. Review Claude's output and copy the structured data into your Notion database.
+4. Repeat for all prior agreements.
+
+## Step 3: Generate a Personalized Clause
+
+1. In Claude, describe the new contract scenario: "I need an indemnification clause for a software licensing agreement with a $1M cap, governing law of Delaware, and a 12-month survival period."
+2. Ask Claude to search your Notion clause library (via integration) or manually provide relevant examples.
+3. Prompt: "Based on the following prior clauses [paste 2-3 examples], generate a new clause that fits the scenario. Ensure language is consistent with our firm's style."
+4. Review and edit the generated clause for accuracy.
+
+## Step 4: Automate with Zapier (Optional)
+
+1. Create a Zap that triggers when a new contract request is submitted via a form (e.g., Google Forms).
+2. The Zap sends the request details to Claude via API to generate a clause.
+3. The generated clause is saved to Notion and emailed to you for review.
+
+## Best Practices
+
+- Always review AI-generated clauses for legal accuracy and jurisdiction-specific nuances.
+- Maintain a version history of clauses in Notion.
+- Regularly update your clause library with new agreements.
+
+## Troubleshooting
+
+- If Claude misinterprets a clause, refine your prompt with more context.
+- For large libraries, use Notion's search and filter to quickly find relevant clauses.

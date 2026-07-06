@@ -1,0 +1,69 @@
+---
+title: "Automated Press Release Generation from Product Updates & Data Sheets"
+description: "Streamline your PR workflow by automatically converting product updates and data sheets into polished press releases using AI and automation tools, saving hours of manual drafting."
+targetRole: ["pr-specialist-tech"]
+targetIntent: ["generate-press-releases"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["zapier","openai-gpt-4","google-docs"]
+---
+
+## Overview
+This workflow automates the creation of press releases from your product updates and data sheets. By connecting your product documentation source (e.g., Google Drive, Notion) to an AI writing assistant via Zapier, you can generate draft press releases in minutes.
+
+## Prerequisites
+- A Zapier account (free tier available)
+- OpenAI API key (GPT-4 recommended)
+- Access to Google Docs or similar document storage
+
+## Step-by-Step Guide
+
+### Step 1: Set Up the Trigger (New Product Update)
+1. In Zapier, create a new Zap.
+2. Choose your trigger app (e.g., Google Drive, Notion, or RSS feed).
+3. Select the trigger event: "New File in Folder" (Google Drive) or "New Page" (Notion).
+4. Connect your account and specify the folder containing product updates/data sheets.
+5. Test the trigger to ensure Zapier can detect new files.
+
+### Step 2: Extract Content
+1. Add a step to fetch the file content. For Google Drive, use the "Get File Contents" action.
+2. If using PDFs or other formats, use a parser like "Extract Text from PDF" (available in Zapier).
+3. Store the extracted text in a variable (e.g., `product_content`).
+
+### Step 3: Generate Press Release with OpenAI
+1. Add a new action: OpenAI (ChatGPT).
+2. Choose the action event: "Send Prompt".
+3. Connect your OpenAI account (API key required).
+4. In the prompt field, use a template like:
+   ```
+   You are a PR specialist. Based on the following product update, write a professional press release with a headline, dateline, body, and boilerplate. Keep it concise and newsworthy.
+
+   Product Update:
+   {{product_content}}
+   ```
+5. Set model to `gpt-4` and temperature to 0.7.
+6. Test the step to see the generated press release.
+
+### Step 4: Save to Google Docs
+1. Add a final action: Google Docs "Create Document".
+2. Set the document title to something like "Press Release - {{date}}".
+3. Set the content to the output from the OpenAI step.
+4. Optionally, share the document with your team or add it to a specific folder.
+
+### Step 5: Review and Refine
+1. Open the generated Google Doc.
+2. Review for accuracy, tone, and completeness.
+3. Make any necessary edits (e.g., add quotes, adjust headline).
+4. Distribute via your usual PR channels.
+
+## Tips
+- Use a consistent naming convention for product updates to trigger the right folder.
+- Customize the prompt to match your brand voice.
+- Add a step to notify your team via Slack or email when a new draft is ready.
+
+## Troubleshooting
+- If the press release is too generic, refine the prompt with more context (e.g., target audience, key message).
+- Ensure your OpenAI API key has sufficient quota.
+- For large documents, consider summarizing first to reduce token usage.

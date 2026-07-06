@@ -1,0 +1,96 @@
+---
+title: "Streamline Vendor Contract Review: Extract & Summarize Key Legal Clauses"
+description: "Automate the extraction and summarization of critical legal clauses from vendor contracts using AI, saving procurement officers hours of manual review while ensuring compliance and risk mitigation."
+targetRole: ["procurement-officer"]
+targetIntent: ["summarize-legal-clauses"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["claude-ai","zapier","google-drive"]
+---
+
+## Overview
+
+As a procurement officer, you need to quickly identify and summarize key legal clauses in vendor contracts—such as indemnification, liability caps, termination rights, and data privacy—to make informed decisions. This workflow uses Claude AI (via Zapier) to automatically process contracts stored in Google Drive and generate structured summaries.
+
+## Prerequisites
+
+- A Google Drive folder containing vendor contracts (PDF or DOCX)
+- A Claude AI account (free tier available)
+- A Zapier account (free tier available)
+
+## Step-by-Step Instructions
+
+### Step 1: Set Up Google Drive Folder
+
+1. Create a dedicated folder in Google Drive named "Vendor Contracts for Review".
+2. Upload all vendor contracts (PDF or DOCX) into this folder.
+
+### Step 2: Configure Claude AI for Legal Clause Extraction
+
+1. Log in to your Claude AI account.
+2. Create a new Project and name it "Contract Clause Extractor".
+3. Add a custom instruction prompt:
+
+```
+You are a legal contract analyst. Extract and summarize the following clauses from the provided contract text:
+- Indemnification
+- Limitation of Liability
+- Termination
+- Data Privacy & Security
+- Governing Law & Dispute Resolution
+- Confidentiality
+- Payment Terms
+- Warranties
+
+For each clause, provide:
+- Clause Name
+- Key Points (bullet list)
+- Risk Level (Low, Medium, High)
+- Recommendation (e.g., "Accept as is", "Negotiate for cap", "Escalate to legal")
+
+Output in JSON format.
+```
+
+4. Save the project.
+
+### Step 3: Create a Zapier Automation
+
+1. Create a new Zap in Zapier.
+2. **Trigger**: Google Drive – New File in Folder (select your "Vendor Contracts for Review" folder).
+3. **Action 1**: Claude AI – Create a Message.
+   - Connect your Claude AI account.
+   - Select the project "Contract Clause Extractor".
+   - In the "Message" field, use the file content from the trigger (Zapier will pass the text).
+4. **Action 2**: Google Drive – Create File from Text.
+   - Set the destination folder (e.g., "Contract Summaries").
+   - File name: `{{filename}}_summary.json`
+   - File content: Use the output from Claude AI (the JSON response).
+5. Turn on the Zap.
+
+### Step 4: Test the Workflow
+
+1. Upload a sample contract to the Google Drive folder.
+2. Wait a few minutes for the Zap to trigger.
+3. Check the "Contract Summaries" folder for the generated JSON summary.
+4. Review the summary for accuracy and adjust the Claude prompt if needed.
+
+### Step 5: Review and Act on Summaries
+
+1. Open each JSON summary.
+2. Focus on high-risk clauses (e.g., unlimited liability, broad indemnification).
+3. Use the recommendations to decide: accept, negotiate, or escalate.
+4. Store summaries in a shared drive for team access.
+
+## Tips for Best Results
+
+- Ensure contracts are text-searchable (OCR if scanned).
+- For complex contracts, manually review the AI output.
+- Update the Claude prompt to include additional clauses relevant to your industry.
+
+## Troubleshooting
+
+- **Zap not triggering**: Check folder permissions and file types.
+- **Incomplete summaries**: Increase Claude's max tokens in the Zap action.
+- **JSON parsing errors**: Ensure Claude outputs valid JSON (add "Output in JSON format" to prompt).

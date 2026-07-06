@@ -1,0 +1,60 @@
+---
+title: "Automated Competitor Price Monitoring & Alerting for E-commerce Managers"
+description: "Set up a fully automated system to track competitor prices in real-time, receive instant alerts on price drops or changes, and make data-driven pricing decisions without manual effort."
+targetRole: ["e-commerce-manager"]
+targetIntent: ["monitor-competitor-prices"]
+difficulty: "Intermediate"
+setupTime: "45 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15 hours/week and increases profit margins by up to 5%"
+toolsUsed: ["priceninja","zapier","google-sheets"]
+---
+
+## Step 1: Identify Key Competitors and Products
+
+List your top 5-10 competitors and the specific products you want to monitor. Focus on best-sellers and high-margin items.
+
+## Step 2: Set Up Price Tracking with PriceNinja
+
+1. Go to [PriceNinja](https://priceninja.com) and create a free account.
+2. Add your competitors' product URLs into PriceNinja's dashboard.
+3. Configure tracking frequency (e.g., every 6 hours) and select the price fields to monitor.
+4. Enable email alerts for price changes.
+
+## Step 3: Create a Centralized Price Database in Google Sheets
+
+1. Open Google Sheets and create a new spreadsheet named "Competitor Price Tracker".
+2. Add columns: Product Name, Competitor, Current Price, Last Checked, Alert Triggered.
+3. Use the **IMPORTXML** or **IMPORTHTML** functions to pull live prices if needed, but for automation we'll use Zapier.
+
+## Step 4: Automate Alerts with Zapier
+
+1. Log in to [Zapier](https://zapier.com) and create a new Zap.
+2. **Trigger**: Choose PriceNinja as the trigger app and select "New Price Change".
+3. Connect your PriceNinja account and select the products to monitor.
+4. **Action**: Choose Google Sheets and select "Add Row" to log the price change.
+5. Add a second action: Choose Email (or Slack) and send a formatted alert with product name, old price, new price, and competitor.
+6. Test the Zap and turn it on.
+
+## Step 5: Set Up Threshold Alerts for Critical Drops
+
+1. In PriceNinja, set custom alerts for price drops below a certain percentage (e.g., 10% below your price).
+2. Use Zapier's filter step to only trigger alerts when the price change exceeds your threshold.
+
+## Step 6: Monitor and Adjust Pricing Strategy
+
+1. Review the Google Sheet weekly to spot trends.
+2. Use the data to adjust your own prices dynamically (e.g., match or undercut competitors).
+3. Consider integrating with a repricing tool like Prisync or RepricerExpress for automatic adjustments.
+
+## Step 7: Scale and Refine
+
+1. Add more competitors and products as needed.
+2. Experiment with different alert thresholds.
+3. Share the dashboard with your team for collaborative decision-making.
+
+## Troubleshooting Tips
+
+- If PriceNinja doesn't detect prices, ensure the URL is correct and the page loads without login.
+- For dynamic websites, use PriceNinja's browser extension to manually select price elements.
+- Check Zapier logs if alerts are not firing.

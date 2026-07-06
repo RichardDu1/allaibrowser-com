@@ -1,0 +1,123 @@
+---
+title: "Automated Technical Documentation Generation from Code Comments"
+description: "Learn how to automatically generate comprehensive technical documentation from code comments using Doxygen, Sphinx, and GitHub Actions, saving hours of manual writing."
+targetRole: ["software-developer"]
+targetIntent: ["generate-technical-documentation"]
+difficulty: "Intermediate"
+setupTime: "30 minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["doxygen","sphinx","github-actions"]
+---
+
+## Overview
+
+Automated documentation generation from code comments ensures your technical docs stay in sync with your codebase. This workflow uses Doxygen to extract comments from C/C++/Python/Java code, Sphinx to render beautiful HTML/PDF docs, and GitHub Actions to automate the build on every push.
+
+## Prerequisites
+
+- A code repository (GitHub, GitLab, etc.)
+- Basic knowledge of Markdown and reStructuredText
+- Python 3.6+ installed locally
+
+## Step 1: Add Doxygen Comments to Your Code
+
+Doxygen supports multiple comment styles. For example, in C++:
+
+```cpp
+/**
+ * @brief Calculates the factorial of a number.
+ * @param n Non-negative integer.
+ * @return Factorial of n.
+ */
+int factorial(int n);
+```
+
+For Python:
+
+```python
+def factorial(n):
+    """
+    Calculate the factorial of a number.
+
+    :param n: Non-negative integer.
+    :return: Factorial of n.
+    """
+    pass
+```
+
+## Step 2: Configure Doxygen
+
+Create a `Doxyfile` in your project root. You can generate a default one with `doxygen -g`. Key settings:
+
+- `INPUT = .` (scan current directory)
+- `RECURSIVE = YES`
+- `GENERATE_XML = YES` (for Sphinx integration)
+- `EXTRACT_ALL = YES`
+
+## Step 3: Set Up Sphinx with Breathe
+
+Install Sphinx and Breathe (connects Doxygen XML to Sphinx):
+
+```bash
+pip install sphinx breathe
+```
+
+Initialize Sphinx:
+
+```bash
+sphinx-quickstart docs
+```
+
+Edit `docs/conf.py`:
+
+```python
+extensions = ['breathe']
+breathe_projects = {'MyProject': '../doxygen_output/xml'}
+breathe_default_project = 'MyProject'
+```
+
+Create `.rst` files that use `.. doxygenfunction:: factorial` to pull in docs.
+
+## Step 4: Automate with GitHub Actions
+
+Create `.github/workflows/docs.yml`:
+
+```yaml
+name: Generate Docs
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen
+      - name: Generate Doxygen XML
+        run: doxygen Doxyfile
+      - name: Install Python deps
+        run: pip install sphinx breathe
+      - name: Build Sphinx docs
+        run: sphinx-build -b html docs docs/_build
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build
+```
+
+## Step 5: View and Maintain
+
+After pushing, your docs are automatically built and deployed to GitHub Pages. Update code comments and the docs refresh on next push.
+
+## Tips
+
+- Use `@ingroup` to group related functions.
+- Write clear, concise comments.
+- For large projects, consider using `EXCLUDE_PATTERNS` in Doxyfile.
+
+## Troubleshooting
+
+- **No output**: Check Doxygen warnings; ensure `GENERATE_XML = YES`.
+- **Sphinx errors**: Verify Breathe configuration and paths.
+- **GitHub Pages not updating**: Check Actions logs; ensure `GITHUB_TOKEN` has write permissions.

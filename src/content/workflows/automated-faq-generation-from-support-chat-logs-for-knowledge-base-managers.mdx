@@ -1,0 +1,76 @@
+---
+title: "Automated FAQ Generation from Support Chat Logs for Knowledge Base Managers"
+description: "Transform raw support chat transcripts into a structured, searchable FAQ knowledge base using AI-powered extraction and categorization. This workflow saves hours of manual curation and ensures your FAQs address real customer questions."
+targetRole: ["knowledge-base-manager"]
+targetIntent: ["generate-faqs"]
+difficulty: "Intermediate"
+setupTime: "2 Hours"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15 hours/week"
+toolsUsed: ["zapier","openai","notion","google-sheets"]
+---
+
+## Automated FAQ Generation from Support Chat Logs
+
+### Overview
+This workflow automates the extraction of common questions and answers from support chat logs, categorizes them, and publishes them to your knowledge base. It uses Zapier for integration, OpenAI for natural language processing, and Notion or Google Sheets for storage.
+
+### Prerequisites
+- Access to your support chat platform (e.g., Intercom, Zendesk, LiveChat)
+- A Zapier account (free tier available)
+- An OpenAI API key (pay-as-you-go)
+- A Notion account (free) or Google Sheets
+
+### Step 1: Export Chat Logs
+1. From your support chat platform, export chat transcripts as CSV or JSON. Most platforms offer this via their API or manual export.
+2. Ensure each transcript includes: customer question, agent response, timestamp, and category (if any).
+
+### Step 2: Set Up Zapier Trigger
+1. Create a new Zap in Zapier.
+2. Choose your chat platform as the trigger app (e.g., Intercom: New Conversation).
+3. Set up the trigger to fire when a conversation is closed or resolved.
+
+### Step 3: Process with OpenAI
+1. Add an action step: Choose OpenAI (ChatGPT) as the app.
+2. Select the action: Send Prompt.
+3. Configure the prompt:
+   ```
+   Extract the most common question and its answer from the following chat transcript. Output as JSON with keys "question" and "answer".
+   Transcript: {{transcript}}
+   ```
+4. Map the transcript field from the trigger step.
+
+### Step 4: Store in Knowledge Base
+#### Option A: Notion
+1. Add another action: Choose Notion.
+2. Select action: Create Database Item.
+3. Connect your Notion account and select the FAQ database.
+4. Map the extracted question and answer to the corresponding database fields.
+
+#### Option B: Google Sheets
+1. Add action: Choose Google Sheets.
+2. Select action: Create Spreadsheet Row.
+3. Map question and answer to columns.
+
+### Step 5: Deduplicate and Categorize
+1. Use a second Zap (or a scheduled Zap) to run a deduplication script:
+   - Fetch all existing FAQ entries.
+   - Compare new entries using text similarity (e.g., via OpenAI embeddings).
+   - If similarity > 90%, skip or merge.
+2. For categorization, use OpenAI to assign a category (e.g., "Billing", "Technical Support") based on the question content.
+
+### Step 6: Review and Publish
+1. Set up a weekly review in Notion or Sheets to manually approve auto-generated FAQs.
+2. Once approved, publish to your public knowledge base (e.g., using Notion's share feature or a tool like Helpjuice).
+
+### Tips
+- Start with a sample of 100 logs to fine-tune the prompt.
+- Use GPT-4 for better accuracy if budget allows.
+- Monitor for sensitive data; ensure PII is stripped before processing.
+
+### Troubleshooting
+- If OpenAI returns malformed JSON, add a fallback step to retry with a simpler prompt.
+- If Zapier times out, break the workflow into smaller Zaps.
+
+### Conclusion
+This workflow reduces manual effort by 90% and ensures your knowledge base stays current with real customer issues.

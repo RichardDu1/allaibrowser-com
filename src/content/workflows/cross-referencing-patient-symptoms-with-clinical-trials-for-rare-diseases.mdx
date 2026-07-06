@@ -1,0 +1,75 @@
+---
+title: "Cross-Referencing Patient Symptoms with Clinical Trials for Rare Diseases"
+description: "A step-by-step guide for medical researchers to efficiently match rare disease patient symptoms with relevant clinical trials using AI-powered search and database tools."
+targetRole: ["medical-researcher"]
+targetIntent: ["match-symptoms-trials"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["clinicaltrials-gov","pubmed","perplexity-ai","zotero"]
+---
+
+## Overview
+
+This workflow enables medical researchers to systematically cross-reference patient symptoms with clinical trials for rare diseases. By combining structured databases with AI-powered search, you can quickly identify relevant trials, extract key eligibility criteria, and compile evidence for case reports.
+
+## Prerequisites
+
+- A list of patient symptoms (structured or free-text)
+- Basic familiarity with clinical trial databases
+- Web browser with tab management (e.g., Chrome, Edge)
+
+## Step 1: Collect and Structure Patient Symptoms
+
+- Use a secure note-taking tool (e.g., Notion, Obsidian) to record symptoms in a structured format: symptom name, onset, severity, duration, and associated conditions.
+- For rare diseases, include specific phenotypic details (e.g., "erythema nodosum" rather than just "rash").
+
+## Step 2: Search ClinicalTrials.gov for Relevant Trials
+
+- Go to [ClinicalTrials.gov](https://clinicaltrials.gov).
+- Use the advanced search to combine symptoms and disease terms. For example: `("symptom" OR "phenotype") AND "rare disease"`.
+- Filter by status: Recruiting, Not yet recruiting, Active.
+- Export results as CSV or XML for further analysis.
+
+## Step 3: Enrich with PubMed Literature
+
+- Use [PubMed](https://pubmed.ncbi.nlm.nih.gov) to find case reports and studies linking symptoms to specific rare diseases.
+- Search with MeSH terms: `(symptom) AND (rare disease) AND (clinical trial)`.
+- Save relevant PMIDs for citation management.
+
+## Step 4: AI-Powered Cross-Referencing with Perplexity AI
+
+- Open [Perplexity AI](https://www.perplexity.ai) in a new tab.
+- Use a prompt like: "List clinical trials for [rare disease] that include patients with [symptom]. Provide NCT IDs and eligibility criteria."
+- Perplexity will search multiple sources and summarize findings. Verify with original sources.
+
+## Step 5: Organize and Annotate with Zotero
+
+- Install [Zotero](https://www.zotero.org) browser extension.
+- Save trial pages, PubMed articles, and Perplexity results into a dedicated collection.
+- Add tags for symptoms, disease, and trial phase.
+- Use Zotero's annotation feature to highlight eligibility criteria related to symptoms.
+
+## Step 6: Match Symptoms to Trial Eligibility
+
+- Create a spreadsheet (Google Sheets or Excel) with columns: Symptom, Disease, Trial NCT ID, Eligibility Criteria, Match Score (High/Medium/Low).
+- For each symptom, review the trial's inclusion/exclusion criteria. Mark as High if the symptom is explicitly listed, Medium if implied, Low if not mentioned.
+
+## Step 7: Generate a Summary Report
+
+- Use a template in Google Docs or Notion to compile findings.
+- Include: patient symptom profile, matched trials with NCT IDs, rationale for match, and references.
+- Share with the clinical team for patient enrollment consideration.
+
+## Tips for Efficiency
+
+- Use browser tab groups to organize trials by disease.
+- Set up Zotero auto-sync to avoid losing references.
+- For recurring searches, save Perplexity threads as templates.
+
+## Privacy Considerations
+
+- Never enter patient-identifiable information into public AI tools.
+- Use de-identified symptom lists.
+- Ensure compliance with HIPAA or GDPR when handling patient data.

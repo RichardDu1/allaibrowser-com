@@ -1,0 +1,62 @@
+---
+title: "Building Personalized Learning Paths from Skill Gaps and Company Goals"
+description: "A step-by-step guide for HR Learning & Development Managers to create tailored learning paths by mapping employee skill gaps to strategic company objectives using AI-powered tools."
+targetRole: ["hr-learning-development-manager"]
+targetIntent: ["create-learning-paths"]
+difficulty: "Intermediate"
+setupTime: "2-3 hours initial setup, then 1 hour per cycle"
+costEstimate: "$0 - $200/mo (depending on tools)"
+roi: "Saves 15 hours/week and improves learning ROI by 40%"
+toolsUsed: ["deepl","notion","zapier","chatgpt"]
+---
+
+## Overview
+
+This workflow helps HR Learning & Development Managers create personalized learning paths that align employee skill gaps with company goals. By leveraging AI and automation, you can scale personalized development plans without manual effort.
+
+## Prerequisites
+
+- Access to employee skill assessment data (e.g., from performance reviews, self-assessments, or 360 feedback)
+- Company strategic goals document (e.g., OKRs, quarterly priorities)
+- Tools: DeepL (translation), Notion (database), Zapier (automation), ChatGPT (AI analysis)
+
+## Step 1: Collect and Structure Skill Gap Data
+
+1. Export employee skill assessments into a CSV with columns: Employee Name, Current Role, Skill, Proficiency Level (1-5), Target Proficiency, Gap.
+2. Upload the CSV to a new Notion database. Create properties: Name (title), Role (select), Skill (select), Current Level (number), Target Level (number), Gap (formula: Target - Current).
+
+## Step 2: Map Company Goals to Required Skills
+
+1. In a separate Notion database, list company goals (e.g., "Increase customer retention by 20%") and break each into required skills (e.g., "Customer Success", "Data Analysis").
+2. Use ChatGPT to generate skill-to-goal mappings: Prompt: "Given company goal '[goal]', list top 5 skills needed and why." Paste results into Notion.
+
+## Step 3: Automate Skill-Goal Matching with Zapier
+
+1. Create a Zap that triggers when a new employee record is added/updated in Notion.
+2. Action: Send employee's skill gaps to ChatGPT with prompt: "For employee [Name] with gaps [list gaps], recommend 3 learning paths that address these gaps and align with company goals [list goals]. Output as JSON with path name, courses, and estimated time."
+3. Parse ChatGPT response and create a new Notion page in a "Learning Paths" database with the recommendations.
+
+## Step 4: Personalize Learning Paths with DeepL (if multilingual)
+
+1. If your workforce is multilingual, use DeepL to translate learning path descriptions into employees' preferred languages.
+2. In Zapier, add a step to send text to DeepL Translate action before saving to Notion.
+
+## Step 5: Review and Refine
+
+1. Weekly, review generated learning paths in Notion. Adjust if needed.
+2. Use ChatGPT to analyze completion rates and suggest improvements: "Based on completion data [paste], suggest changes to learning paths for better engagement."
+
+## Step 6: Communicate and Track
+
+1. Share personalized learning paths with employees via email or Slack (automated via Zapier).
+2. Track progress in Notion and update skill levels quarterly.
+
+## Tips
+
+- Start with a pilot group of 10 employees to refine the process.
+- Use ChatGPT's memory feature to retain context about your company goals.
+- Ensure data privacy by anonymizing employee data when using external AI tools.
+
+## Conclusion
+
+This workflow transforms raw skill data into actionable, personalized learning paths that drive both employee growth and company success. Automation reduces manual work, while AI ensures relevance and scalability.

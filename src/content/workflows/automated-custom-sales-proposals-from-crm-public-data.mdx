@@ -1,0 +1,73 @@
+---
+title: "Automated Custom Sales Proposals from CRM & Public Data"
+description: "Streamline your B2B sales process by automatically generating personalized proposals using CRM data and enriched public company information, saving hours per proposal."
+targetRole: ["b2b-sales-representative"]
+targetIntent: ["generate-proposals"]
+difficulty: "Intermediate"
+setupTime: "45 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 5-10 hours/week"
+toolsUsed: ["hubspot-crm","apollo-io","openai-gpt-4","zapier"]
+---
+
+## Generating Customized Sales Proposals from CRM Data and Public Company Info
+
+### Overview
+This workflow automates the creation of personalized sales proposals by combining your CRM data (e.g., HubSpot) with enriched public company information (via Apollo.io) and AI-generated content (OpenAI GPT-4). The result is a tailored proposal ready for review and sending.
+
+### Prerequisites
+- A HubSpot CRM account with contact and company data.
+- An Apollo.io account (free tier available) for company enrichment.
+- An OpenAI API key (GPT-4 access recommended).
+- A Zapier account (free tier available) for automation.
+
+### Step 1: Set Up CRM Data Extraction
+1. In HubSpot, ensure your contacts have associated company records with fields like `Company Name`, `Industry`, `Revenue`, and `Number of Employees`.
+2. Create a custom property `Proposal Status` to track proposal generation.
+3. Use a HubSpot workflow or manual trigger to identify contacts ready for a proposal (e.g., deal stage = 'Proposal Sent').
+
+### Step 2: Enrich Company Data with Apollo.io
+1. In Apollo.io, create a list of target companies from your CRM (export CSV or use integration).
+2. Use Apollo's enrichment to add fields: `Company Description`, `Recent Funding`, `Key Technologies`, `Competitors`.
+3. Export enriched data as CSV or use Apollo's API.
+
+### Step 3: Build the Automation in Zapier
+1. **Trigger**: New or updated HubSpot contact with `Proposal Status = Ready`.
+2. **Action 1**: Look up company in Apollo.io (use Apollo's API via Zapier's Webhook or direct integration) to get enriched data.
+3. **Action 2**: Send data to OpenAI GPT-4 with a prompt to generate proposal sections:
+   - Executive Summary (personalized with contact name, company name, industry).
+   - Value Proposition (based on company pain points from enriched data).
+   - Proposed Solution (tailored to industry and tech stack).
+   - Pricing Options (from your CRM product catalog).
+4. **Action 3**: Create a Google Doc or PDF using a template (e.g., Google Docs template with placeholders).
+5. **Action 4**: Update HubSpot contact with link to generated proposal and set `Proposal Status = Generated`.
+
+### Step 4: Customize the AI Prompt
+Use this prompt template in your Zapier OpenAI action:
+```
+You are a B2B sales proposal writer. Create a customized proposal for [Contact Name] at [Company Name].
+Company details: Industry: [Industry], Revenue: [Revenue], Employees: [Employees], Description: [Company Description], Recent Funding: [Funding], Tech Stack: [Technologies].
+Our product: [Product Name] with features [Feature List].
+Write sections: 1) Executive Summary (2-3 sentences), 2) Value Proposition (bullet points), 3) Proposed Solution (paragraph), 4) Pricing (table with options).
+Keep tone professional and persuasive.
+```
+
+### Step 5: Review and Send
+1. Manually review the generated proposal for accuracy and tone.
+2. Make any edits directly in Google Docs.
+3. Send via email using HubSpot's email integration or your preferred client.
+4. Update `Proposal Status` to `Sent` in HubSpot.
+
+### Tips for Success
+- Regularly update your CRM data to ensure accuracy.
+- Test the automation with a few contacts before scaling.
+- Use Apollo.io's filters to prioritize high-fit companies.
+- Monitor OpenAI usage to control costs (set a monthly limit).
+
+### Troubleshooting
+- **Missing data**: Ensure CRM fields are populated; add fallback values in Zapier.
+- **API errors**: Check API keys and rate limits.
+- **Proposal quality**: Refine the AI prompt with more specific instructions.
+
+### Conclusion
+This workflow reduces proposal creation time from hours to minutes, allowing you to focus on closing deals. By leveraging CRM data and public company insights, each proposal is highly relevant and personalized.

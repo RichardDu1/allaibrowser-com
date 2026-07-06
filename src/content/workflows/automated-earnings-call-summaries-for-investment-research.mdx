@@ -1,0 +1,78 @@
+---
+title: "Automated Earnings Call Summaries for Investment Research"
+description: "Streamline your investment research by automatically extracting key financial metrics, management sentiment, and strategic insights from earnings call transcripts using AI-powered tools."
+targetRole: ["financial-analyst"]
+targetIntent: ["summarize-earnings-calls"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["chatgpt","otter-ai","notion"]
+---
+
+## Overview
+
+This workflow enables financial analysts to quickly generate structured investment research summaries from earnings call transcripts. By combining AI transcription, summarization, and note-taking tools, you can reduce manual analysis time and focus on decision-making.
+
+## Prerequisites
+
+- A ChatGPT Plus subscription (or access to GPT-4 via API)
+- An Otter.ai account (free tier works for short calls)
+- A Notion account (free tier sufficient)
+
+## Step-by-Step Guide
+
+### Step 1: Obtain the Earnings Call Transcript
+
+- **Option A:** Download the official transcript from the company's investor relations page (usually PDF).
+- **Option B:** Use Otter.ai to transcribe the call in real-time or upload an audio recording.
+
+### Step 2: Pre-process the Transcript
+
+- If using a PDF, copy the text and paste into a plain text editor to remove formatting.
+- If using Otter.ai, export the transcript as a .txt file.
+
+### Step 3: Summarize with ChatGPT
+
+1. Open ChatGPT and select GPT-4 model.
+2. Use the following prompt template (replace `[TRANSCRIPT]` with the full text):
+
+```
+You are a financial analyst. Summarize the following earnings call transcript for investment research. Include:
+- Key financial metrics (revenue, EPS, guidance)
+- Management's strategic priorities
+- Risks and challenges mentioned
+- Analyst Q&A highlights
+- Overall sentiment (bullish/bearish/neutral)
+
+Transcript:
+[TRANSCRIPT]
+
+Output as a structured markdown report with sections.
+```
+
+3. Review and refine the output. You can ask follow-up questions for deeper analysis.
+
+### Step 4: Store in Notion
+
+1. Create a new page in your Notion database titled "[Company] Earnings Call Summary - [Date]".
+2. Paste the ChatGPT-generated summary.
+3. Add tags for company, sector, and sentiment.
+4. Optionally, link to the original transcript file.
+
+### Step 5: Automate (Optional)
+
+- Use Zapier or Make to connect Otter.ai → ChatGPT → Notion for end-to-end automation.
+- Set up a recurring workflow for quarterly earnings seasons.
+
+## Best Practices
+
+- Always verify AI-generated numbers against the original transcript.
+- Customize the ChatGPT prompt to focus on metrics relevant to your investment thesis.
+- Maintain a Notion database to track summaries over time for trend analysis.
+
+## Troubleshooting
+
+- **Transcript too long:** Split into sections and summarize each part, then combine.
+- **Inaccurate numbers:** Ask ChatGPT to double-check calculations or manually verify.
+- **Missing context:** Provide additional instructions like "Focus on free cash flow and debt levels."

@@ -1,0 +1,65 @@
+---
+title: "Automated Earnings Call Analysis: Extract Financial Metrics & Generate Reports"
+description: "Streamline your earnings call analysis by using AI to transcribe, extract key financial metrics, and generate structured reports, saving hours of manual work."
+targetRole: ["financial-analyst"]
+targetIntent: ["extract-earnings-metrics"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["otter-ai","notion","zapier"]
+---
+
+## Overview
+
+This workflow enables financial analysts to automatically extract key financial metrics from earnings call transcripts and generate structured reports. By combining Otter.ai for transcription, Notion for report storage, and Zapier for automation, you can reduce manual effort and focus on analysis.
+
+## Prerequisites
+
+- Otter.ai account (free tier available)
+- Notion account (free tier available)
+- Zapier account (free tier available)
+
+## Step 1: Transcribe Earnings Calls with Otter.ai
+
+1. **Upload or record** the earnings call audio to Otter.ai. Otter.ai supports direct upload of audio files or real-time recording.
+2. **Wait for transcription** – Otter.ai will generate a transcript with speaker identification.
+3. **Review and correct** any transcription errors (optional but recommended for accuracy).
+
+## Step 2: Extract Financial Metrics Using Otter.ai's AI Chat
+
+1. **Open the transcript** in Otter.ai.
+2. **Use the AI Chat** feature to ask questions like:
+   - "What are the revenue, net income, and EPS for this quarter?"
+   - "List all key financial metrics mentioned."
+   - "What is the forward guidance?"
+3. **Copy the extracted metrics** into a structured format (e.g., JSON or table).
+
+## Step 3: Create a Notion Database for Reports
+
+1. **Create a new Notion database** with properties: Company, Quarter, Revenue, Net Income, EPS, Guidance, Notes.
+2. **Set up a template** for consistent report formatting.
+
+## Step 4: Automate Data Entry with Zapier
+
+1. **Create a new Zap** in Zapier.
+2. **Trigger**: Choose Otter.ai as the trigger app and select "New Transcript" event.
+3. **Action**: Choose Notion as the action app and select "Create Database Item".
+4. **Map fields**: Map the transcript title to Company, date to Quarter, and use Otter.ai's AI Chat output (via Webhook or manual copy) to fill Revenue, Net Income, etc.
+5. **Test and enable** the Zap.
+
+## Step 5: Generate Reports
+
+1. **View the Notion database** – each new earnings call automatically populates a new entry.
+2. **Use Notion's rollup** or formula properties to calculate ratios (e.g., profit margin).
+3. **Export** the database as CSV or PDF for further analysis.
+
+## Tips for Efficiency
+
+- **Batch process** multiple calls by uploading them to Otter.ai simultaneously.
+- **Customize AI Chat prompts** to extract specific metrics relevant to your sector.
+- **Use Zapier filters** to only process calls from certain companies.
+
+## Conclusion
+
+This workflow reduces manual transcription and data entry, allowing you to analyze more earnings calls in less time. With AI-powered extraction and automated reporting, you can focus on insights rather than data gathering.

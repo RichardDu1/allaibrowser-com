@@ -1,0 +1,77 @@
+---
+title: "Automated Press Release Generation from Company News for PR Specialists"
+description: "Streamline your PR workflow by automatically generating press releases from internal company news using AI and automation tools, saving hours of manual drafting."
+targetRole: ["pr-specialist"]
+targetIntent: ["generate-press-releases"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["zapier","openai-gpt-4","google-docs","slack"]
+---
+
+## Automated Press Release Generation from Company News for PR Specialists
+
+This workflow automates the creation of press releases from internal company news (e.g., product launches, partnerships, awards). By integrating a news source, AI generation, and distribution channels, you can produce polished press releases in minutes.
+
+### Prerequisites
+- A Zapier account (free tier available)
+- An OpenAI API key (GPT-4 recommended; costs ~$0.03 per press release)
+- A Google Docs account (free)
+- A Slack workspace (free) for notifications
+
+### Step 1: Set Up a News Trigger in Zapier
+1. Log in to Zapier and create a new Zap.
+2. Choose a trigger app that contains your company news. Options:
+   - **RSS by Zapier**: If your company blog or newsroom has an RSS feed.
+   - **Google Sheets**: If news is logged in a spreadsheet.
+   - **Slack**: If news is posted in a specific channel.
+3. Configure the trigger to watch for new items (e.g., new blog post, new row in sheet, new message).
+4. Test the trigger to ensure it pulls in sample data.
+
+### Step 2: Extract News Details
+1. Add a **Formatter by Zapier** step to extract key fields: title, date, summary, and full text.
+2. Use the **Text** action to clean up the content (e.g., remove HTML tags).
+3. Map the fields to variables for later use.
+
+### Step 3: Generate Press Release with OpenAI
+1. Add a new action: **OpenAI (ChatGPT)**.
+2. Select the **Send Prompt** action.
+3. In the prompt field, use a template like:
+   ```
+   You are a PR specialist. Write a professional press release based on the following news:
+   Title: {{title}}
+   Date: {{date}}
+   Summary: {{summary}}
+   Full Text: {{fulltext}}
+   Include a headline, dateline, body, boilerplate about the company, and contact information. Use AP style.
+   ```
+4. Set model to `gpt-4` and temperature to 0.7.
+5. Test the step to see the generated press release.
+
+### Step 4: Save to Google Docs
+1. Add a **Google Docs** action: **Create Document**.
+2. Set the document title to `Press Release - {{title}}`.
+3. Set the content to the output from OpenAI.
+4. Optionally, set the folder to a shared PR folder.
+
+### Step 5: Notify Team via Slack
+1. Add a **Slack** action: **Send Channel Message**.
+2. Choose the channel (e.g., #pr-drafts).
+3. Message text: `New press release generated: {{title}} - {{google_doc_link}}`
+4. Test and enable the Zap.
+
+### Step 6: Review and Distribute
+1. Open the Google Doc to review and edit the press release.
+2. Use a distribution tool like **PRWeb** or **Cision** (not covered here) to send to media.
+
+### Tips
+- Customize the prompt for your brand voice.
+- Add a human review step before distribution.
+- Monitor costs: each press release uses ~1000 tokens (~$0.03 with GPT-4).
+
+### Troubleshooting
+- If the trigger doesn't fire, check Zapier's connection to your app.
+- If the AI output is off, refine the prompt with more examples.
+
+This workflow reduces press release creation time from 2 hours to 10 minutes.

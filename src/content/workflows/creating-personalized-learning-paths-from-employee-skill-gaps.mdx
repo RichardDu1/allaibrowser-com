@@ -1,0 +1,67 @@
+---
+title: "Creating Personalized Learning Paths from Employee Skill Gaps"
+description: "A step-by-step guide for learning developers to automatically generate tailored learning paths by analyzing employee skill gaps using AI and existing HR tools."
+targetRole: ["learning-developer"]
+targetIntent: ["generate-learning-paths"]
+difficulty: "Intermediate"
+setupTime: "60 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15 hours/week"
+toolsUsed: ["zapier","chatgpt","google-sheets","lms-integration"]
+---
+
+## Overview
+
+This workflow enables learning developers to automatically create personalized learning paths for employees based on identified skill gaps. By integrating skill assessment data with AI-powered content generation, you can deliver customized training plans at scale.
+
+## Prerequisites
+
+- Access to employee skill gap data (e.g., from performance reviews or skills assessments)
+- A Google account (for Google Sheets)
+- A Zapier account (free tier available)
+- An OpenAI API key (or ChatGPT Plus for manual steps)
+- A Learning Management System (LMS) that supports API or CSV import (e.g., Moodle, TalentLMS)
+
+## Step 1: Prepare Skill Gap Data
+
+1. Export or compile employee skill gap data into a structured format. Example columns: `Employee Name`, `Email`, `Current Skill`, `Target Skill`, `Gap Level` (e.g., Beginner, Intermediate, Advanced).
+2. Create a Google Sheet named "Skill Gaps" and paste the data. Ensure the first row contains headers.
+
+## Step 2: Set Up Zapier Automation
+
+1. Log in to [Zapier](https://zapier.com) and create a new Zap.
+2. **Trigger**: Choose Google Sheets > New Spreadsheet Row. Connect your Google account and select the "Skill Gaps" sheet.
+3. **Action**: Choose OpenAI (ChatGPT) > Send Prompt. Configure:
+   - **Prompt**: "Generate a personalized learning path for an employee with the following details: Employee: {{Employee Name}}, Current Skill: {{Current Skill}}, Target Skill: {{Target Skill}}, Gap Level: {{Gap Level}}. Provide a step-by-step plan with recommended courses, resources, and estimated time. Output in JSON format with keys: 'employee_name', 'learning_path_title', 'steps' (array of objects with 'step_number', 'description', 'resource', 'duration')."
+   - **Model**: gpt-4 (or gpt-3.5-turbo for lower cost)
+   - **Temperature**: 0.7
+4. **Action**: Choose Google Sheets > Create Spreadsheet Row. Create a new sheet named "Learning Paths" and map the output fields (employee_name, learning_path_title, steps) to columns.
+5. Turn on the Zap.
+
+## Step 3: Review and Refine Generated Paths
+
+1. After the Zap runs, open the "Learning Paths" sheet. Each row contains an employee name and a JSON string of their learning path.
+2. Use a formula to parse JSON: `=ARRAYFORMULA(IFERROR(TRANSPOSE(SPLIT(REGEXREPLACE(A2, "[{}]", ""), ","))))` (adjust as needed).
+3. Review the paths for quality. Optionally, use ChatGPT to refine: copy a path and ask "Improve this learning path for a [role] with [gap level] gap: [paste JSON]".
+
+## Step 4: Import into LMS
+
+1. Convert the learning paths into a format compatible with your LMS (e.g., CSV with columns: `User Email`, `Course ID`, `Due Date`).
+2. Use Zapier again: Trigger when a new row is added to "Learning Paths" sheet, then action: LMS integration (e.g., TalentLMS > Create User or Enroll User).
+3. Alternatively, manually import via LMS admin panel.
+
+## Step 5: Monitor and Iterate
+
+1. Track completion rates and feedback. Use a survey tool (e.g., Google Forms) to collect employee input.
+2. Adjust the ChatGPT prompt to improve path relevance. For example, add "Include company-specific internal resources."
+3. Run the Zap periodically (e.g., monthly) to update paths as skill gaps change.
+
+## Tips
+
+- **Data Privacy**: Ensure employee data is handled securely. Use anonymized IDs if possible.
+- **Cost Control**: Use GPT-3.5-turbo for high volume; set a monthly limit in OpenAI.
+- **Customization**: Add a column for "Role" or "Department" in the skill gap sheet to tailor paths further.
+
+## Conclusion
+
+This workflow automates the creation of personalized learning paths, saving hours of manual work and ensuring each employee gets relevant training. By leveraging AI and no-code tools, learning developers can scale L&D efforts efficiently.

@@ -1,0 +1,55 @@
+---
+title: "Automated FAQ Generation from Support Tickets for Self-Service Portals"
+description: "Transform your support ticket history into a dynamic, searchable FAQ using AI and automation. This workflow helps customer support managers reduce repetitive inquiries and empower self-service."
+targetRole: ["customer-support-manager"]
+targetIntent: ["generate-faq-from-tickets"]
+difficulty: "Intermediate"
+setupTime: "2-3 hours initial setup, then 30 min/week maintenance"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15+ hours/week by deflecting tickets"
+toolsUsed: ["zapier","openai","intercom","notion"]
+---
+
+## Overview
+This guide walks you through building an automated pipeline that extracts common questions from support tickets, generates polished FAQ answers using AI, and publishes them to your self-service portal. By the end, your customers will find answers faster, and your team will handle fewer repetitive tickets.
+
+## Prerequisites
+- Access to your support ticket system (e.g., Intercom, Zendesk, Freshdesk)
+- A Zapier account (free tier works)
+- An OpenAI API key (or ChatGPT Plus for manual steps)
+- A knowledge base tool (e.g., Notion, Help Scout, or your portal's CMS)
+
+## Step 1: Export Ticket Data
+Export a CSV of resolved tickets from the last 3-6 months. Include fields: ticket ID, subject, description, resolution notes, and tags. Aim for at least 500 tickets for good coverage.
+
+## Step 2: Clean and Categorize (Optional but Recommended)
+Use a spreadsheet or a tool like OpenRefine to remove duplicates, PII, and internal notes. Tag tickets by category (billing, technical, account). This improves FAQ relevance.
+
+## Step 3: Extract Common Questions with AI
+Use OpenAI's GPT-4 to analyze ticket subjects and descriptions. Prompt example:
+```
+Analyze the following support tickets and list the top 20 most common questions customers ask. For each question, provide a concise answer based on the resolution notes.
+Tickets: [paste CSV data]
+```
+Alternatively, use Zapier's OpenAI integration to automate this step monthly.
+
+## Step 4: Generate FAQ Drafts
+For each identified question, generate a clear, friendly answer. Use a prompt like:
+```
+Write a helpful FAQ answer for the question: "[question]" based on this resolution: "[resolution]". Keep it under 100 words and use simple language.
+```
+Review and edit for accuracy.
+
+## Step 5: Create a Feedback Loop
+Add a "Was this helpful?" button to each FAQ. Use Zapier to log negative feedback and flag the FAQ for review. This ensures continuous improvement.
+
+## Step 6: Publish to Self-Service Portal
+Manually or via Zapier, push the FAQ entries to your knowledge base. For Notion, use the Notion API. For Intercom, use the Articles API. Schedule monthly updates to add new FAQs and retire outdated ones.
+
+## Step 7: Monitor and Iterate
+Track FAQ views, upvotes, and deflection rate. Use analytics to identify gaps. Repeat the extraction process monthly to keep content fresh.
+
+## Automation Tips
+- Create a Zap that triggers weekly: new resolved tickets → extract question → add to a Google Sheet for review.
+- Use OpenAI's fine-tuning if you have a large dataset for better accuracy.
+- Integrate with Slack to notify the team when a new FAQ is ready for approval.

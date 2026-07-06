@@ -1,0 +1,60 @@
+---
+title: "Automate Trending Post Scheduling: From Trend Detection to Auto-Publishing"
+description: "A step-by-step guide for social media managers to automatically detect trending topics, generate relevant content, and schedule posts across platforms using real tools like BuzzSumo, ChatGPT, and Buffer."
+targetRole: ["social-media-manager"]
+targetIntent: ["schedule-trending-posts"]
+difficulty: "Intermediate"
+setupTime: "45 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15 hours/week"
+toolsUsed: ["buzzsumo","chatgpt","buffer","zapier"]
+---
+
+## Automating Social Media Post Scheduling Based on Trending Topics
+
+### Overview
+This workflow helps social media managers automatically detect trending topics, generate engaging posts, and schedule them across platforms. By integrating BuzzSumo, ChatGPT, Buffer, and Zapier, you can save hours of manual work and ensure your content is always timely.
+
+### Prerequisites
+- Accounts on BuzzSumo (free tier works), ChatGPT (free or paid), Buffer (free tier), and Zapier (free tier).
+- Basic familiarity with each tool.
+
+### Step 1: Set Up Trend Detection with BuzzSumo
+1. Log into BuzzSumo and navigate to the **Trending** section.
+2. Configure alerts for your industry keywords (e.g., "AI", "marketing").
+3. Save the RSS feed URL for your alerts (BuzzSumo provides an RSS feed for each alert).
+
+### Step 2: Create a Zapier Automation to Fetch Trends
+1. In Zapier, create a new Zap with **RSS by Zapier** as the trigger.
+2. Select **New Item in Feed** and paste your BuzzSumo RSS feed URL.
+3. Test the trigger to ensure it pulls trending articles.
+
+### Step 3: Generate Post Content with ChatGPT
+1. Add an action step in Zapier: **ChatGPT** (or OpenAI) with action **Send Prompt**.
+2. In the prompt field, use a template like: "Write a short social media post (max 280 characters) about this trending topic: {{Title}}. Include relevant hashtags."
+3. Map the article title from the RSS trigger to the prompt.
+4. Test to confirm ChatGPT returns a post.
+
+### Step 4: Schedule the Post in Buffer
+1. Add another action step: **Buffer** with action **Create Post**.
+2. Connect your Buffer account and select the social profiles (e.g., Twitter, LinkedIn).
+3. Map the ChatGPT output (the generated post) to the **Text** field.
+4. Optionally set a schedule (e.g., post immediately or at a specific time).
+5. Test the entire Zap.
+
+### Step 5: Activate and Monitor
+1. Turn on the Zap. It will run every time a new trending article appears in your BuzzSumo feed.
+2. Monitor Buffer to see scheduled posts. Adjust the ChatGPT prompt or scheduling as needed.
+
+### Tips for Success
+- Use BuzzSumo's **Trending Alerts** for real-time updates.
+- Customize ChatGPT prompts to match your brand voice.
+- Buffer's free tier allows up to 10 scheduled posts per profile; upgrade if needed.
+- Review posts before they go live to ensure quality.
+
+### Troubleshooting
+- If Zapier fails, check that RSS feed is valid and ChatGPT API key is active.
+- If posts are too long, adjust the prompt to limit characters.
+
+### Conclusion
+This automation reduces manual effort and keeps your social media presence relevant. Experiment with different sources and prompts to optimize engagement.

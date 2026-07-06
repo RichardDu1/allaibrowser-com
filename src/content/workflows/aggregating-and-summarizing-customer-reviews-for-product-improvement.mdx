@@ -1,0 +1,77 @@
+---
+title: "Aggregating and Summarizing Customer Reviews for Product Improvement"
+description: "A step-by-step guide for product managers to collect, analyze, and summarize customer reviews from multiple platforms using AI tools, turning feedback into actionable product insights."
+targetRole: ["product-manager"]
+targetIntent: ["aggregate-review-insights"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["zapier","chatgpt","google-sheets"]
+---
+
+## Overview
+
+This workflow helps product managers aggregate customer reviews from multiple sources (e.g., App Store, Google Play, Amazon, G2) and use AI to summarize key themes, sentiment, and improvement suggestions. By automating data collection and analysis, you can focus on prioritizing product changes.
+
+## Prerequisites
+
+- A Zapier account (free tier available)
+- An OpenAI API key or ChatGPT Plus subscription
+- A Google account for Google Sheets
+
+## Step 1: Set Up Review Collection with Zapier
+
+1. **Create a new Zap** in Zapier.
+2. **Choose a trigger app** that matches your review source (e.g., App Store Connect, Google Play Console, Amazon Reviews, G2).
+3. **Select the trigger event** (e.g., "New Review").
+4. **Connect your account** and configure the trigger (e.g., select your app).
+5. **Test the trigger** to ensure Zapier can fetch reviews.
+
+## Step 2: Store Reviews in Google Sheets
+
+1. **Add an action step** in the same Zap.
+2. **Choose Google Sheets** as the action app.
+3. **Select "Create Spreadsheet Row"** event.
+4. **Connect your Google account** and select a spreadsheet (create one named "Customer Reviews").
+5. **Map fields**: Date, Reviewer, Rating, Title, Body, Source.
+6. **Test the action** to confirm data is written.
+
+## Step 3: Summarize Reviews with ChatGPT
+
+1. **Create a new Zap** (or add another action step) to process new rows.
+2. **Trigger**: Google Sheets - New Row (use the same spreadsheet).
+3. **Action**: OpenAI (ChatGPT) - Send Prompt.
+4. **Configure the prompt**:
+   ```
+   Summarize the following customer review in 1-2 sentences, highlighting the main sentiment and any specific product improvement suggestions:
+   Review: "{{Body}}"
+   ```
+5. **Map the response** to a new column in Google Sheets (e.g., "Summary").
+
+## Step 4: Aggregate Insights Weekly
+
+1. **Create a new Zap** that runs weekly (schedule trigger).
+2. **Action**: Google Sheets - Get Many Rows (fetch all rows from the past week).
+3. **Action**: OpenAI (ChatGPT) - Send Prompt with aggregated data:
+   ```
+   Analyze the following customer reviews from the past week. Identify top 3 positive themes, top 3 negative themes, and top 3 product improvement suggestions. Provide a concise summary.
+   Reviews: {{reviews}}
+   ```
+4. **Store the result** in a new sheet or send via email.
+
+## Step 5: Review and Act
+
+1. **Check the weekly summary** for actionable insights.
+2. **Prioritize improvements** based on frequency and severity.
+3. **Share with your team** via Slack or email (use Zapier to automate).
+
+## Tips
+
+- Use filters in Zapier to only process reviews with ratings below 3 for critical issues.
+- Customize the ChatGPT prompt to focus on specific product areas (e.g., UI, performance).
+- Export data to a BI tool like Tableau for deeper analysis.
+
+## Conclusion
+
+This automated workflow saves hours of manual review reading and provides clear, actionable insights for product improvement. Start with a few sources and expand as needed.

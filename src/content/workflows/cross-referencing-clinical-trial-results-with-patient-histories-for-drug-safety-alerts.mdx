@@ -1,0 +1,60 @@
+---
+title: "Cross-Referencing Clinical Trial Results with Patient Histories for Drug Safety Alerts"
+description: "A step-by-step guide for pharmacovigilance scientists to automate the cross-referencing of clinical trial results with patient electronic health records (EHRs) to generate real-time drug safety alerts, enhancing adverse event detection and regulatory compliance."
+targetRole: ["pharmacovigilance-scientist"]
+targetIntent: ["cross-reference-trials"]
+difficulty: "Intermediate"
+setupTime: "2 hours"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15 hours/week by automating manual data reconciliation"
+toolsUsed: ["zapier","openfda","redcap","tableau-public"]
+---
+
+## Cross-Referencing Clinical Trial Results with Patient Histories for Drug Safety Alerts
+
+### Overview
+This workflow enables pharmacovigilance scientists to automatically cross-reference clinical trial results (e.g., from ClinicalTrials.gov or internal databases) with patient electronic health records (EHRs) to generate real-time drug safety alerts. By leveraging automation and data integration tools, you can reduce manual effort and improve detection of adverse events.
+
+### Prerequisites
+- Access to clinical trial data (e.g., via OpenFDA API or REDCap)
+- Patient EHR data (e.g., from a hospital database or FHIR API)
+- A Zapier account (free tier available)
+- A Tableau Public account (free) for visualization
+
+### Step 1: Extract Clinical Trial Results
+Use **OpenFDA API** to fetch adverse event reports for a specific drug. For example, query for "aspirin" adverse events:
+```
+https://api.fda.gov/drug/event.json?search=patient.drug.medicinalproduct:aspirin&limit=100
+```
+Alternatively, if you use **REDCap**, export trial data as CSV.
+
+### Step 2: Prepare Patient Histories
+Export patient EHR data (e.g., medications, diagnoses, lab results) in a structured format (CSV/JSON). Ensure patient identifiers are anonymized per HIPAA/GDPR.
+
+### Step 3: Automate Data Integration with Zapier
+Create a Zap that:
+- **Trigger**: New clinical trial result added (e.g., from OpenFDA webhook or REDCap new record)
+- **Action**: Search patient database for matching drug or condition (e.g., via SQL query or API call)
+- **Action**: Generate alert if a match is found (e.g., send email or create a task)
+
+Example Zapier setup:
+1. Trigger: "New Event in OpenFDA" (use RSS feed)
+2. Action: "Run JavaScript" to parse and compare with patient data
+3. Action: "Send Email" with alert details
+
+### Step 4: Visualize Alerts in Tableau
+Connect Tableau Public to your alert log (e.g., Google Sheets updated by Zapier). Create dashboards showing:
+- Number of alerts per drug
+- Patient demographics
+- Time trends
+
+### Step 5: Review and Act
+Pharmacovigilance scientists review alerts weekly, update patient records, and report to regulatory bodies if needed.
+
+### Tips
+- Use **OpenFDA** for public trial data; for proprietary data, use **REDCap**.
+- Ensure data privacy by anonymizing patient IDs before integration.
+- Test with a small dataset before scaling.
+
+### Conclusion
+This workflow automates the tedious process of manual cross-referencing, allowing you to focus on high-risk alerts and improve patient safety.

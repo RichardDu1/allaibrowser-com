@@ -1,0 +1,60 @@
+---
+title: "Automating Job Description Generation and Skill Matching from CVs"
+description: "Streamline your hiring process by automatically generating tailored job descriptions from CVs and matching candidate skills using AI-powered tools."
+targetRole: ["hr-recruiter"]
+targetIntent: ["generate-job-descriptions"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15 hours/week"
+toolsUsed: ["zapier","openai","google-docs","airtable"]
+---
+
+## Overview
+
+This workflow automates the creation of job descriptions and skill matching from CVs. By integrating AI with your existing tools, you can reduce manual effort and improve accuracy.
+
+## Prerequisites
+
+- A Zapier account (free tier available)
+- An OpenAI API key (pay-as-you-go)
+- Google Docs access
+- Airtable account (free tier)
+
+## Step 1: Set Up CV Intake
+
+1. Create an Airtable base with fields: `CV File`, `Candidate Name`, `Extracted Text`, `Skills`, `Job Description`.
+2. Use Zapier to connect your email or upload folder to Airtable. When a new CV arrives, trigger a Zap that uploads the file to Airtable.
+
+## Step 2: Extract Text from CVs
+
+1. In Zapier, add a step to use the **OpenAI (ChatGPT)** action.
+2. Configure the action to send the CV file content (as text) with the prompt: "Extract all skills, experience, and education from this CV. Return as a structured list."
+3. Map the response to the `Extracted Text` field in Airtable.
+
+## Step 3: Generate Job Description
+
+1. Add another OpenAI step in the same Zap.
+2. Use the extracted text as context with the prompt: "Based on this candidate's profile, generate a detailed job description for a similar role. Include responsibilities, qualifications, and skills."
+3. Save the output to the `Job Description` field in Airtable.
+
+## Step 4: Skill Matching
+
+1. Create a second Zap triggered when a new job description is added.
+2. Use OpenAI to compare the skills in the CV with the job description. Prompt: "Given the candidate's skills: [skills] and the job description: [job description], calculate a match percentage and list missing skills."
+3. Update Airtable with the match score.
+
+## Step 5: Automate Notifications
+
+1. Add a step in Zapier to send an email or Slack message when a high match (e.g., >80%) is found.
+2. Include the candidate name, match score, and generated job description.
+
+## Tips
+
+- Use GPT-4 for better accuracy.
+- Regularly review and refine prompts.
+- Ensure CVs are in text format (PDFs may need conversion).
+
+## Conclusion
+
+This workflow saves hours of manual work, ensures consistency, and speeds up the hiring process.

@@ -1,0 +1,109 @@
+---
+title: "Automated Itinerary Builder: From Booking Confirmations to Personalized Travel Plans"
+description: "Streamline your travel agency workflow by automatically extracting booking details from emails and preferences from client profiles, then generating polished, shareable itineraries with zero manual data entry."
+targetRole: ["travel-agent"]
+targetIntent: ["create-itineraries"]
+difficulty: "Intermediate"
+setupTime: "45 Minutes"
+costEstimate: "$0 - $30/mo"
+roi: "Saves 15 hours/week"
+toolsUsed: ["zapier","google-sheets","openai-gpt-4","canva"]
+---
+
+## Overview
+
+This workflow automates the creation of travel itineraries by connecting your email (booking confirmations) and client preference forms to a central itinerary builder. You'll use Zapier to capture data, Google Sheets as a database, OpenAI's GPT-4 to generate narrative descriptions, and Canva to produce a branded PDF.
+
+## Prerequisites
+
+- A Zapier account (free tier works)
+- A Google account (Sheets)
+- An OpenAI API key (or ChatGPT Plus for manual steps)
+- A Canva account (free or Pro)
+- Email inbox (Gmail, Outlook, etc.)
+
+## Step 1: Set Up Email Parsing with Zapier
+
+1. **Create a new Zap** in Zapier.
+2. **Trigger**: Choose your email app (e.g., Gmail) and select "New Email Matching Search".
+3. **Filter**: Set search criteria to match booking confirmation emails (e.g., subject contains "Booking Confirmation" or sender is "reservations@airline.com").
+4. **Action**: Add a step to parse the email body. Use Zapier's Formatter to extract key fields: 
+   - `Hotel Name`
+   - `Check-in Date`
+   - `Check-out Date`
+   - `Confirmation Number`
+   - `Flight Number` (if applicable)
+   - `Departure/Arrival Times`
+5. **Test**: Send a sample email to ensure extraction works.
+
+## Step 2: Capture Client Preferences
+
+1. **Create a Google Form** with fields: 
+   - Client Name
+   - Travel Style (Luxury, Budget, Adventure, etc.)
+   - Interests (Food, History, Nature, etc.)
+   - Dietary Restrictions
+   - Preferred Activities
+2. **Connect Form to Google Sheets**: Responses will automatically populate a sheet.
+3. **Zapier Integration**: Create a second Zap that triggers on new form submission and stores the data in a separate sheet or appends to the main itinerary sheet.
+
+## Step 3: Build a Central Itinerary Database in Google Sheets
+
+1. **Create a new Google Sheet** with columns:
+   - `Client Name`
+   - `Booking Source` (email or form)
+   - `Hotel Name`
+   - `Check-in`
+   - `Check-out`
+   - `Flight Details`
+   - `Preferences`
+   - `Generated Itinerary` (will be filled later)
+2. **Zapier Action**: Set up a Zap that adds rows to this sheet whenever new booking data or preferences arrive.
+
+## Step 4: Generate Itinerary Narrative with GPT-4
+
+1. **Create a Zap** that triggers when a new row is added to the itinerary sheet.
+2. **Action**: Use OpenAI (GPT-4) integration in Zapier.
+3. **Prompt Template**:
+   ```
+   You are a travel itinerary writer. Based on the following booking details and client preferences, create a day-by-day itinerary in a friendly, professional tone. Include recommendations for meals, activities, and local tips.
+
+   Booking Details:
+   - Hotel: {{Hotel Name}}
+   - Check-in: {{Check-in}}
+   - Check-out: {{Check-out}}
+   - Flight: {{Flight Details}}
+
+   Client Preferences:
+   - Travel Style: {{Travel Style}}
+   - Interests: {{Interests}}
+   - Dietary Restrictions: {{Dietary Restrictions}}
+
+   Output the itinerary in plain text with clear day headings.
+   ```
+4. **Output**: Store the generated text in the `Generated Itinerary` column of the sheet.
+
+## Step 5: Design a Branded PDF with Canva
+
+1. **Create a Canva template** for itineraries (use a pre-made travel itinerary template).
+2. **Set up Canva API** or use Zapier's Canva integration (if available). Alternatively, manually copy-paste.
+3. **Automation**: Use a Zap that triggers when the `Generated Itinerary` column is updated, then uses Canva's "Create Design from Text" action to populate the template.
+4. **Export as PDF** and save to Google Drive or email to the client.
+
+## Step 6: Deliver the Itinerary
+
+1. **Final Zap**: Send an email to the client with the PDF attached.
+2. **Optional**: Add a step to update your CRM (e.g., HubSpot) with the itinerary status.
+
+## Tips & Best Practices
+
+- **Test with sample data** before going live.
+- **Use labels/filters** in Gmail to automatically forward booking emails to a specific folder.
+- **Regularly review** extracted data for accuracy.
+- **Customize the GPT prompt** to match your agency's tone.
+
+## Troubleshooting
+
+- **Email parsing fails**: Use Zapier's built-in email parser or try a dedicated tool like Mailparser.
+- **GPT-4 rate limits**: Upgrade to a paid OpenAI plan or use GPT-3.5 for lower volume.
+- **Canva integration limits**: Canva's Zapier integration may require a Pro account; alternatively, use a Google Docs template and convert to PDF.

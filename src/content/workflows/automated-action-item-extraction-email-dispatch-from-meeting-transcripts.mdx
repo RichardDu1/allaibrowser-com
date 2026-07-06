@@ -1,0 +1,79 @@
+---
+title: "Automated Action Item Extraction & Email Dispatch from Meeting Transcripts"
+description: "Streamline your project management workflow by automatically extracting key action items from meeting transcripts and emailing them to participants using AI and automation tools."
+targetRole: ["project-manager"]
+targetIntent: ["extract-action-items"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["otter-ai","zapier","gmail"]
+---
+
+## Overview
+
+This workflow automates the extraction of action items from meeting transcripts and sends them via email to participants. It uses Otter.ai for transcription and AI-powered action item detection, Zapier for automation, and Gmail for email delivery.
+
+## Prerequisites
+
+- Otter.ai account (free or Business plan)
+- Zapier account (free tier available)
+- Gmail account
+
+## Step 1: Set Up Otter.ai for Action Item Extraction
+
+1. **Create an Otter.ai account** at [otter.ai](https://otter.ai).
+2. **Record or upload a meeting transcript** – Otter.ai automatically transcribes meetings and highlights action items using AI.
+3. **Review action items** – In the transcript, Otter.ai identifies and tags action items with a checkbox icon. You can manually add or edit them.
+4. **Enable Otter.ai Zapier integration** – Go to Otter.ai settings > Integrations > Zapier, and connect your account.
+
+## Step 2: Create a Zapier Workflow
+
+1. **Log in to Zapier** and click **Create Zap**.
+2. **Set trigger: Otter.ai – New Action Item**
+   - Choose Otter.ai as the app.
+   - Select trigger event: **New Action Item**.
+   - Connect your Otter.ai account.
+   - Test the trigger to ensure it pulls action items.
+3. **Set action: Gmail – Send Email**
+   - Choose Gmail as the app.
+   - Select action event: **Send Email**.
+   - Connect your Gmail account.
+   - Configure the email:
+     - **To**: Use dynamic data from the trigger (e.g., meeting participants' emails). You may need to map participant emails from Otter.ai (if available) or use a static list.
+     - **Subject**: `Action Items from [Meeting Title]`
+     - **Body**: Compose a template that includes the action item text, assignee (if available), and due date. Use Zapier's formatter to structure the data.
+4. **Test and publish** the Zap.
+
+## Step 3: Customize Email Template
+
+In the Gmail action, use a template like:
+
+```
+Hi team,
+
+Here are the action items from our meeting:
+
+{{action_item_text}}
+
+Best,
+[Your Name]
+```
+
+You can also include a link to the full transcript.
+
+## Step 4: Automate and Monitor
+
+- The Zap runs automatically whenever a new action item is detected in Otter.ai.
+- Monitor the Zap history in Zapier for any errors.
+- Optionally, add a delay or filter to batch multiple action items into one email.
+
+## Tips
+
+- Use Otter.ai's Business plan for team collaboration and custom vocabulary.
+- For more advanced extraction, combine with ChatGPT via Zapier to summarize action items.
+- Ensure participant emails are captured in Otter.ai (e.g., via calendar integration).
+
+## Conclusion
+
+This workflow eliminates manual note-taking and follow-up, ensuring no action item is missed. It's scalable for teams of any size.

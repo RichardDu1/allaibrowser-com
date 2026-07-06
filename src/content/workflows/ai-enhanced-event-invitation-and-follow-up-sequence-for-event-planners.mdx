@@ -1,0 +1,66 @@
+---
+title: "AI-Enhanced Event Invitation and Follow-Up Sequence for Event Planners"
+description: "Automate personalized event invitations and follow-ups using AI to boost attendance and engagement, saving hours of manual work."
+targetRole: ["event-planner"]
+targetIntent: ["create-event-invitations-and-follow-ups"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["zapier","chatgpt","mailchimp"]
+---
+
+## AI-Enhanced Event Invitation and Follow-Up Sequence
+
+This workflow uses AI to generate personalized event invitations and automated follow-up sequences, ensuring higher attendance and engagement.
+
+### Prerequisites
+- A Zapier account (free tier available)
+- An OpenAI API key or ChatGPT Plus subscription
+- A Mailchimp account (free tier available)
+- Your event details (date, time, location, description)
+
+### Step 1: Create an AI-Powered Invitation Template
+1. Go to [ChatGPT](https://chat.openai.com) and prompt: "Write a professional event invitation email for [event name] on [date] at [location]. Include a compelling subject line, key details, and a call-to-action to RSVP."
+2. Refine the output to match your brand voice.
+3. Save the final template in a Google Doc or note.
+
+### Step 2: Set Up Your Contact List in Mailchimp
+1. Log in to [Mailchimp](https://mailchimp.com) and create a new audience (list) for event attendees.
+2. Import your contacts (CSV or manual entry) with fields: Name, Email, Company, etc.
+3. Create segments based on attendee type (VIP, regular, speaker) for personalization.
+
+### Step 3: Build the Automation in Zapier
+1. Create a new Zap in [Zapier](https://zapier.com).
+2. **Trigger**: Choose "Mailchimp" > "New Subscriber" (or "New Tag Added" if using segments).
+3. **Action 1**: Choose "ChatGPT" > "Send Prompt". Configure:
+   - Prompt: "Write a personalized event invitation email for [First Name] from [Company] for [Event Name]. Use the following template: [paste template]. Include their name and company in the body."
+   - Use dynamic fields from Mailchimp (First Name, Company).
+4. **Action 2**: Choose "Mailchimp" > "Send Email". Map the ChatGPT output to the email body and subject.
+5. **Action 3**: Add a delay (e.g., 2 days after RSVP deadline).
+6. **Action 4**: Add another ChatGPT action for follow-up: "Write a friendly reminder email for [First Name] about [Event Name] happening on [date]. Include a link to register."
+7. **Action 5**: Send the follow-up via Mailchimp.
+
+### Step 4: Personalize with Attendee Data
+- Use Mailchimp merge tags to insert attendee name, company, and custom fields.
+- In ChatGPT prompts, include dynamic data like `[First Name]` and `[Company]` to generate unique emails.
+
+### Step 5: Test and Launch
+1. In Zapier, test the Zap with a sample subscriber.
+2. Check that the email looks correct and personalization works.
+3. Turn on the Zap and invite your first batch of attendees.
+
+### Step 6: Monitor and Optimize
+- Track open rates and RSVP conversions in Mailchimp.
+- Adjust the ChatGPT prompt to improve tone or length.
+- Add A/B testing by creating two versions of the invitation.
+
+### Tips for Success
+- Use a clear call-to-action (e.g., "Register Now").
+- Send reminders 1 week and 1 day before the event.
+- For VIPs, add a personal note from the event host.
+
+### Troubleshooting
+- **Emails not sending**: Check Mailchimp sending limits and Zapier connection.
+- **Personalization not working**: Ensure merge tags match exactly (e.g., `*|FNAME|*`).
+- **ChatGPT output too long**: Add "Keep the email under 150 words" to the prompt.

@@ -1,0 +1,62 @@
+---
+title: "Automating Competitor SEO Analysis for E-commerce Product Pages"
+description: "A step-by-step guide to automatically monitor and analyze competitor product page SEO strategies, including keywords, meta tags, and content gaps, using real tools like Semrush, Screaming Frog, and Google Sheets."
+targetRole: ["ecommerce-seo-manager"]
+targetIntent: ["automate-competitor-seo-research"]
+difficulty: "Intermediate"
+setupTime: "2-3 Hours"
+costEstimate: "$100 - $200/mo"
+roi: "Saves 15 hours/week"
+toolsUsed: ["semrush","screaming-frog-seo-spider","google-sheets","zapier"]
+---
+
+## Automating Competitor SEO Analysis for E-commerce Product Pages
+
+### Overview
+This workflow automates the collection and analysis of competitor product page SEO data, enabling you to identify keyword opportunities, meta tag improvements, and content gaps without manual effort.
+
+### Prerequisites
+- Semrush account (Pro or higher)
+- Screaming Frog SEO Spider (paid license for unlimited URLs)
+- Google account (for Sheets)
+- Zapier account (free tier works)
+
+### Step 1: Identify Top Competitors
+1. Use **Semrush** > **Domain Analytics** > **Competitors** to get a list of your top organic competitors.
+2. Export the list to a CSV file.
+
+### Step 2: Collect Competitor Product Page URLs
+1. Use **Screaming Frog** to crawl each competitor domain.
+2. Filter by URL containing "/product/" or similar pattern (adjust based on your niche).
+3. Export the list of product page URLs to a CSV.
+
+### Step 3: Extract SEO Metrics for Each URL
+1. In **Semrush**, use the **Domain Analytics** > **Pages** report.
+2. Upload the CSV of competitor product URLs.
+3. Export the report with columns: URL, Organic Keywords, Traffic, Keyword Positions, Title Tag, Meta Description.
+
+### Step 4: Automate Data Collection with Zapier
+1. Create a new Zap in **Zapier**.
+2. Trigger: **Schedule by Zapier** (e.g., weekly).
+3. Action: **Semrush** > **Get Page Analytics** (requires API integration).
+4. Action: **Google Sheets** > **Add Row** to a master spreadsheet.
+5. Map fields: URL, Keywords, Traffic, Title, Meta Description.
+
+### Step 5: Analyze Gaps and Opportunities
+1. In **Google Sheets**, use formulas to compare your own product page keywords vs. competitors.
+2. Highlight keywords where competitors rank but you don't (gap analysis).
+3. Create a pivot table to show most common title/meta patterns among top-ranking pages.
+
+### Step 6: Generate Actionable Reports
+1. Set up a **Google Data Studio** dashboard connected to your Sheets.
+2. Visualize: keyword overlap, traffic distribution, missing meta tags.
+3. Share with your team via a recurring email (use Zapier to send weekly PDF).
+
+### Tips for Success
+- Update competitor list quarterly.
+- Use **Screaming Frog** to also check for missing h1 tags, image alt text, and schema markup.
+- Combine with **Google Search Console** data for your own site to prioritize fixes.
+
+### Troubleshooting
+- If Semrush API limits are hit, stagger requests or upgrade plan.
+- For large competitor sets, use **Screaming Frog** in headless mode via command line for automation.

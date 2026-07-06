@@ -1,0 +1,81 @@
+---
+title: "Extracting and Summarizing Customer Complaints from Social Media for Product Teams"
+description: "A step-by-step guide for product managers to automatically collect, filter, and summarize customer complaints from social media using real tools, enabling data-driven product improvements."
+targetRole: ["product-manager-software"]
+targetIntent: ["extract-customer-feedback"]
+difficulty: "Intermediate"
+setupTime: "1-2 hours"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15 hours/week"
+toolsUsed: ["brand24","zapier","openai-api","google-sheets"]
+---
+
+## Overview
+
+This workflow helps product managers automatically extract customer complaints from social media, filter them for relevance, and generate concise summaries for product teams. By using Brand24 for monitoring, Zapier for automation, OpenAI API for summarization, and Google Sheets for storage, you can turn raw social chatter into actionable insights.
+
+## Prerequisites
+
+- A Brand24 account (free trial available)
+- A Zapier account (free tier works)
+- An OpenAI API key (pay-as-you-go)
+- A Google account (for Sheets)
+
+## Step 1: Set Up Social Media Monitoring in Brand24
+
+1. **Create a new project** in Brand24.
+2. **Add keywords** related to your product and common complaint phrases (e.g., "bug", "issue", "frustrated", "not working", product name + "problem").
+3. **Configure sources**: Select Twitter, Reddit, Facebook, Instagram, and review sites.
+4. **Set up alerts** for negative sentiment (Brand24 automatically detects sentiment).
+5. **Test** by searching for a few known complaints to ensure coverage.
+
+## Step 2: Connect Brand24 to Zapier
+
+1. **Log in to Zapier** and create a new Zap.
+2. **Choose Brand24 as the trigger app** and select "New Mention".
+3. **Connect your Brand24 account** and select the project you created.
+4. **Test the trigger** to ensure mentions are pulled correctly.
+
+## Step 3: Filter for Complaints Using OpenAI
+
+1. **Add an action step** in Zapier: choose OpenAI (or ChatGPT) as the app.
+2. **Select action**: "Send Prompt".
+3. **Configure the prompt**: Use a system message like "You are a product feedback analyst. Determine if the following social media post is a customer complaint about a product. Reply with 'COMPLAINT' if it is, otherwise 'NOT_COMPLAINT'." Then include the mention text from Brand24.
+4. **Parse the response**: Use Zapier's Formatter to extract the classification.
+5. **Add a filter step**: Only continue if the response is "COMPLAINT".
+
+## Step 4: Summarize Complaints with OpenAI
+
+1. **Add another action step**: OpenAI "Send Prompt".
+2. **Prompt**: "Summarize the following customer complaint in one sentence, focusing on the core issue and desired outcome: [mention text]."
+3. **Store the summary** in a variable for later use.
+
+## Step 5: Store Results in Google Sheets
+
+1. **Add an action step**: Google Sheets "Create Spreadsheet Row".
+2. **Connect your Google account** and select a spreadsheet (create one named "Complaints Summary").
+3. **Map columns**: Date, Source, Original Text, Summary, Sentiment (from Brand24), URL.
+4. **Test the Zap** to ensure data flows correctly.
+
+## Step 6: Review and Share Insights
+
+1. **Set up a weekly digest** using Google Sheets' built-in notification or Zapier's Schedule trigger to email the sheet to your product team.
+2. **Analyze trends**: Use pivot tables in Sheets to count complaints by feature or sentiment.
+3. **Prioritize fixes**: Share top recurring complaints with engineering.
+
+## Tips for Success
+
+- **Refine keywords** weekly to reduce noise.
+- **Use Brand24's sentiment filter** to pre-filter negative mentions.
+- **Add a human review step** if needed (e.g., Slack notification for manual check).
+- **Cost optimization**: Use OpenAI's gpt-3.5-turbo for lower cost.
+
+## Troubleshooting
+
+- **No mentions**: Check keyword relevance and Brand24 project settings.
+- **OpenAI errors**: Ensure API key has credits and prompt is clear.
+- **Zapier fails**: Verify all connections and field mappings.
+
+## Conclusion
+
+This automated workflow transforms scattered social media complaints into a structured, summarized dataset, enabling product teams to make data-driven decisions quickly. Start with a free trial of Brand24 and scale as needed.

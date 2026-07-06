@@ -1,0 +1,80 @@
+---
+title: "Localized Marketing Copy from Regional Search Trends"
+description: "Leverage real-time regional search data to generate culturally relevant marketing copy that resonates with local audiences, improving engagement and conversion rates."
+targetRole: ["marketing-manager"]
+targetIntent: ["create-localized-copy"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 10 hours/week and increases local CTR by 20%"
+toolsUsed: ["google-trends","semrush","chatgpt","zapier"]
+---
+
+## Overview
+
+This workflow helps marketing managers create localized marketing copy by analyzing regional search trends. By combining Google Trends, SEMrush, ChatGPT, and Zapier, you can automate the research and generation of copy tailored to specific geographic markets.
+
+## Prerequisites
+
+- Google Trends (free)
+- SEMrush account (free tier available)
+- ChatGPT Plus (or API access)
+- Zapier account (free tier)
+
+## Step 1: Identify Target Regions and Keywords
+
+1. Log into **Google Trends**.
+2. Enter your core product or service keyword (e.g., "coffee shop").
+3. Set the geographic filter to a specific region (e.g., "United States" > "Texas").
+4. Note the "Related queries" and "Rising" trends. Export the data as CSV.
+5. Repeat for each target region.
+
+## Step 2: Analyze Regional Search Intent with SEMrush
+
+1. Open **SEMrush** and go to "Keyword Overview".
+2. Paste the keywords from Google Trends.
+3. Set the location to the same region.
+4. Review the "Intent" column (Informational, Navigational, Commercial, Transactional).
+5. Note the top-ranking pages for each keyword to understand local content style.
+
+## Step 3: Generate Localized Copy with ChatGPT
+
+1. Open **ChatGPT** (GPT-4 recommended).
+2. Use the following prompt template:
+
+```
+You are a marketing copywriter. Based on the following regional search trends for [Region], create a short marketing copy (headline, subheadline, and call-to-action) for [Product/Service].
+
+Trends:
+- Keyword: [keyword1] with rising interest
+- Intent: [intent]
+- Local competitors use [style]
+
+Copy should be culturally relevant, use local slang if appropriate, and be under 100 words.
+```
+
+3. Repeat for each region.
+
+## Step 4: Automate with Zapier (Optional)
+
+1. Create a Zap that triggers when a new row is added to a Google Sheet (containing region, keywords, intent).
+2. Action: Send the row data to ChatGPT via API to generate copy.
+3. Action: Save the generated copy back to the Google Sheet.
+4. This allows batch generation for multiple regions.
+
+## Step 5: Review and Refine
+
+1. Manually review the generated copy for tone and accuracy.
+2. A/B test the copy in local ad campaigns (Google Ads, Facebook).
+3. Iterate based on performance data.
+
+## Best Practices
+
+- Always include local landmarks or cultural references.
+- Use region-specific language (e.g., "y'all" in Texas).
+- Monitor trends weekly to stay current.
+- Respect data privacy: do not use personal data without consent.
+
+## Conclusion
+
+By following this workflow, you can efficiently produce marketing copy that speaks directly to local audiences, driving higher engagement and conversions.

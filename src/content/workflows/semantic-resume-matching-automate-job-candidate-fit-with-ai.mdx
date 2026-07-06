@@ -1,0 +1,77 @@
+---
+title: "Semantic Resume Matching: Automate Job-Candidate Fit with AI"
+description: "Leverage semantic search to instantly match job descriptions with candidate resumes, reducing manual screening time by 80%."
+targetRole: ["recruiter"]
+targetIntent: ["match-jobs-candidates"]
+difficulty: "Intermediate"
+setupTime: "1-2 hours"
+costEstimate: "$0 - $50/mo"
+roi: "Saves 15+ hours/week per recruiter"
+toolsUsed: ["pinecone","openai-embeddings","zapier"]
+---
+
+## Overview
+
+This workflow uses semantic search to automatically match job descriptions to candidate resumes. Instead of keyword matching, semantic search understands context and meaning, surfacing the best-fit candidates even when they use different phrasing.
+
+## Prerequisites
+
+- A database of candidate resumes (PDF or text)
+- Job descriptions in text format
+- Basic familiarity with APIs and Zapier
+
+## Step 1: Prepare Your Resume Database
+
+1. Extract text from all resumes (use a tool like **Textract** or **PDF.co**).
+2. Clean the text: remove headers/footers, standardize formatting.
+3. Store each resume as a separate document with a unique ID.
+
+## Step 2: Generate Embeddings with OpenAI
+
+1. Sign up for OpenAI API and get an API key.
+2. Use the `text-embedding-3-small` model to generate embeddings for each resume.
+   - Example Python code:
+     ```python
+     import openai
+     openai.api_key = 'your-api-key'
+     response = openai.Embedding.create(
+         input="resume text here",
+         model="text-embedding-3-small"
+     )
+     embedding = response['data'][0]['embedding']
+     ```
+3. Store the embedding vector alongside the resume ID.
+
+## Step 3: Index Embeddings in Pinecone
+
+1. Create a free Pinecone account and create an index (dimension=1536, metric=cosine).
+2. Upsert your resume embeddings with their IDs:
+   ```python
+   import pinecone
+   pinecone.init(api_key='your-pinecone-key', environment='us-west1-gcp')
+   index = pinecone.Index('resume-index')
+   index.upsert(vectors=[('resume_1', embedding_1), ...])
+   ```
+
+## Step 4: Automate with Zapier
+
+1. Create a new Zap triggered by a new job description (e.g., from ATS or email).
+2. Use **OpenAI (ChatGPT)** action to generate an embedding for the job description.
+3. Use **Pinecone** action to query the index with the job embedding, returning top 10 resume IDs.
+4. Use **Gmail** or **Slack** to send the matched candidate names/links to the recruiter.
+
+## Step 5: Review and Refine
+
+- Test with sample job descriptions and verify matches.
+- Adjust the number of results returned (e.g., top 5 or 20).
+- Optionally, add a second stage with GPT-4 to rank the top candidates with a summary.
+
+## Tips
+
+- For better accuracy, include job title, skills, and experience level in the embedding.
+- Update resume embeddings weekly as new resumes come in.
+- Ensure compliance with data privacy regulations (e.g., GDPR) when storing resumes.
+
+## Conclusion
+
+This automated semantic matching pipeline dramatically reduces manual screening time and improves candidate quality. Recruiters can focus on interviewing the best-fit candidates instead of reading hundreds of resumes.

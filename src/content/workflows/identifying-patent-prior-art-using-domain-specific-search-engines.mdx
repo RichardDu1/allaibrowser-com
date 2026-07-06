@@ -1,0 +1,69 @@
+---
+title: "Identifying Patent Prior Art Using Domain-Specific Search Engines"
+description: "A step-by-step guide for patent attorneys to efficiently find prior art using specialized search engines like Google Patents, USPTO, Espacenet, and The Lens, with tips on query formulation and result analysis."
+targetRole: ["patent-attorney"]
+targetIntent: ["find-prior-art"]
+difficulty: "Intermediate"
+setupTime: "30 Minutes"
+costEstimate: "$0 - $20/mo"
+roi: "Saves 10 hours/week"
+toolsUsed: ["google-patents","uspto-patft","espacenet","the-lens"]
+---
+
+## Introduction
+
+Identifying prior art is critical for patent prosecution, litigation, and freedom-to-operate analyses. Domain-specific search engines offer advanced filters and full-text search capabilities that general search engines lack. This guide covers four key tools: Google Patents, USPTO PatFT, Espacenet, and The Lens.
+
+## Step 1: Define Your Search Strategy
+
+- **Identify key concepts**: Break your invention into essential elements (e.g., "wireless charging", "biodegradable polymer").
+- **Use classification codes**: Determine relevant CPC/IPC classes (e.g., H02J50/00 for wireless charging).
+- **Set date ranges**: Focus on publications before your priority date.
+
+## Step 2: Search with Google Patents
+
+- **URL**: [patents.google.com](https://patents.google.com)
+- **Features**: Full-text search, machine translation, classification filtering, and citation analysis.
+- **Query tips**: Use quotes for exact phrases, Boolean operators (AND, OR, NOT), and field searches (e.g., `title:"wireless charging"`).
+- **Example**: `(wireless AND charging) AND (H02J50/00) AND priority_date:before 2020-01-01`
+- **Review results**: Sort by relevance or date. Use "Cited by" to find subsequent art.
+
+## Step 3: Search with USPTO PatFT
+
+- **URL**: [patft.uspto.gov](https://patft.uspto.gov)
+- **Features**: Advanced search with field codes (TTL, ABST, ACLM, SPEC).
+- **Query tips**: Use `TTL/"wireless charging" AND ABST/polymer`.
+- **Example**: `TTL/"wireless charging" AND ACLM/"biodegradable"`
+- **Export**: Download results as CSV for analysis.
+
+## Step 4: Search with Espacenet
+
+- **URL**: [worldwide.espacenet.com](https://worldwide.espacenet.com)
+- **Features**: Global patent database, classification search, and family information.
+- **Query tips**: Use smart search with keywords and classifications (e.g., `ta="wireless charging" AND cl=H02J50/00`).
+- **Example**: `ta="wireless charging" AND pd=2019`
+- **Analyze**: View patent family to identify related applications.
+
+## Step 5: Search with The Lens
+
+- **URL**: [lens.org](https://lens.org)
+- **Features**: Open patent and scholarly search, with analytics and collaboration tools.
+- **Query tips**: Use fielded search (e.g., `title:"wireless charging" AND classification:H02J50/00`).
+- **Example**: `title:"wireless charging" AND classification:H02J50/00 AND publication_date:[* TO 2020-01-01]`
+- **Analyze**: Use "Patent Landscapes" to visualize trends.
+
+## Step 6: Cross-Reference and Validate
+
+- **Compare results**: Identify patents appearing in multiple databases.
+- **Check legal status**: Use USPTO PAIR or Espacenet to verify if patents are expired or abandoned.
+- **Review non-patent literature**: The Lens includes scholarly articles; Google Scholar can supplement.
+
+## Step 7: Document and Report
+
+- **Create a prior art table**: List patent number, title, relevance, and key claims.
+- **Use citation analysis**: Note forward and backward citations.
+- **Export data**: Use built-in export features (CSV, PDF) or tools like PatentVector.
+
+## Conclusion
+
+By leveraging domain-specific search engines, patent attorneys can systematically identify prior art with higher precision. Combine multiple databases to ensure comprehensive coverage and validate findings. This workflow reduces search time and improves the quality of prior art analysis.
