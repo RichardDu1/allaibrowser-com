@@ -1,56 +1,82 @@
 ---
-// Footer.astro — 4-column footer with legal links
+// Footer.astro — AI Browser Review Site Footer
+const footerSections = [
+  {
+    title: 'Reviews',
+    links: [
+      { label: 'Browser Use', href: '/en/reviews/browser-use/' },
+      { label: 'Stagehand', href: '/en/reviews/stagehand/' },
+      { label: 'Playwright', href: '/en/tools/playwright/' },
+      { label: 'Puppeteer', href: '/en/tools/puppeteer/' },
+      { label: 'AgentQL', href: '/en/tools/agentql/' },
+      { label: 'Browserbase', href: '/en/tools/browserbase/' },
+    ],
+  },
+  {
+    title: 'Compare',
+    links: [
+      { label: 'Browser Use vs Stagehand', href: '/en/comparisons/browser-use-vs-stagehand/' },
+      { label: 'Playwright vs Puppeteer', href: '/en/comparisons/playwright-vs-puppeteer/' },
+      { label: 'AgentQL vs Browser Use', href: '/en/comparisons/agentql-vs-browser-use/' },
+      { label: 'All Comparisons', href: '/en/comparisons/' },
+    ],
+  },
+  {
+    title: 'Best Of',
+    links: [
+      { label: 'Best Web Agents', href: '/en/best-ofs/web-agents/' },
+      { label: 'Best Browser Automation', href: '/en/best-ofs/browser-automation/' },
+      { label: 'Best AI Scraping Tools', href: '/en/best-ofs/ai-scraping/' },
+      { label: 'Best Testing Tools', href: '/en/best-ofs/testing-tools/' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { label: 'Guides & Tutorials', href: '/en/guides/' },
+      { label: 'About Us', href: '/en/about/' },
+      { label: 'How We Test', href: '/en/how-we-test/' },
+      { label: 'Contact', href: '/en/contact/' },
+    ],
+  },
+];
 ---
 
-<footer class="bg-[#0d1117] text-[#8b949e] mt-24 pt-16 pb-8 border-t border-[#21262d]">
-  <div class="container">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-      <!-- Brand -->
-      <div>
-        <h3 class="text-white font-bold text-lg mb-3">All AI Browser</h3>
-        <p class="text-sm text-gray-400 leading-relaxed">
-          Discover the best AI browsers and AI-powered web tools. Honest reviews, side-by-side tests, and expert picks.
-        </p>
-      </div>
-
-      <!-- Categories -->
-      <div>
-        <h4 class="text-white font-semibold mb-3">Categories</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/en/categories/writing/" class="hover:text-white transition-colors">AI Writing</a></li>
-          <li><a href="/en/categories/image/" class="hover:text-white transition-colors">AI Image</a></li>
-          <li><a href="/en/categories/coding/" class="hover:text-white transition-colors">AI Coding</a></li>
-          <li><a href="/en/categories/productivity/" class="hover:text-white transition-colors">AI Productivity</a></li>
-        </ul>
-      </div>
-
-      <!-- Resources -->
-      <div>
-        <h4 class="text-white font-semibold mb-3">Resources</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/en/blog/" class="hover:text-white transition-colors">Blog</a></li>
-          <li><a href="/en/compare/" class="hover:text-white transition-colors">Compare Tools</a></li>
-          <li><a href="/en/latest/" class="hover:text-white transition-colors">Latest Tools</a></li>
-          <li><a href="/en/newsletter/" class="hover:text-white transition-colors">Newsletter</a></li>
-        </ul>
-      </div>
-
-      <!-- Company -->
-      <div>
-        <h4 class="text-white font-semibold mb-3">Company</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/en/about/" class="hover:text-white transition-colors">About</a></li>
-          <li><a href="/en/contact/" class="hover:text-white transition-colors">Contact</a></li>
-          <li><a href="/en/privacy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
-          <li><a href="/en/terms/" class="hover:text-white transition-colors">Terms of Use</a></li>
-        </ul>
-      </div>
+<footer class="bg-dark-2 border-t border-border mt-24">
+  <div class="container mx-auto px-6 max-w-7xl pt-16 pb-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      {footerSections.map((section) => (
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">{section.title}</h4>
+          <ul class="space-y-2.5">
+            {section.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-muted hover:text-white transition-colors duration-200">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
 
     <!-- Bottom bar -->
-    <div class="border-t border-gray-700 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-      <p>&copy; {new Date().getFullYear()} All AI Browser. All rights reserved.</p>
-      <p>We may earn a commission from affiliate links at no extra cost to you.</p>
+    <div class="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 rounded-md bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+          <svg class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v12M6 12h12"/>
+          </svg>
+        </div>
+        <p class="text-xs text-muted">&copy; {new Date().getFullYear()} AI Browser Reviews. All rights reserved.</p>
+      </div>
+      <div class="flex gap-6 text-xs text-muted">
+        <a href="/en/privacy/" class="hover:text-white transition-colors">Privacy</a>
+        <a href="/en/terms/" class="hover:text-white transition-colors">Terms</a>
+        <a href="/en/sitemap/" class="hover:text-white transition-colors">Sitemap</a>
+      </div>
     </div>
   </div>
 </footer>

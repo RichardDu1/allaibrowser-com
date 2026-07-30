@@ -1,42 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import Card from '../components/Card.astro';
-
-const pageTitle = 'All AI Browser — Best Browser Extensions & Scrapers';
-const pageDescription = 'The ultimate directory for AI browser extensions, Chrome plugins, and web scraping tools.';
+const pageTitle = 'AI Browsers & Web Agents Reviewed — Tested, Compared, Ranked';
+const pageDescription = 'The first dedicated review site for AI browser tools. We test, compare, and rank Browser Use, Stagehand, Playwright, Puppeteer, AgentQL, Browserbase and more.';
 ---
-
-<BaseLayout
-  title={pageTitle}
-  description={pageDescription}
-  canonical="https://allaibrowser.com/en/"
-  schema={{ type: 'WebSite', data: { description: pageDescription } }}
->
-  <Hero title="Supercharge Your Browser with AI" subtitle="Discover the best Chrome extensions for productivity, AI chat, and automated scraping." />
-
-  <section class="container mx-auto px-6 py-8 animate-fade-in-up" style="animation-delay: 0.2s;">
-    <h2 class="text-xl md:text-2xl font-bold mb-10 text-white tracking-tight flex items-center gap-3">
-      <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
-      Popular Categories
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
-      <Card title="AI Chat" description="ChatGPT & Claude Extensions" href="/en/categories/c1/" tag="Trending" featured={true} />
-      <Card title="Scrapers" description="Web Scraping Plugins" href="/en/categories/c2/" tag="New" />
-      <Card title="SEO Tools" description="SEO Analyzer Extensions" href="/en/categories/c3/" />
-      <Card title="Writing" description="Grammar & AI Writers" href="/en/categories/c4/" />
-    </div>
-  </section>
-
-  <section class="container mx-auto px-6 py-16 animate-fade-in-up" style="animation-delay: 0.4s;">
-    <h2 class="text-xl md:text-2xl font-bold mb-10 text-white tracking-tight flex items-center gap-3">
-      <span class="w-1.5 h-6 bg-purple-500 rounded-full"></span>
-      Latest Updates
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <Card title="Top 10 ChatGPT Chrome Extensions" description="Read our latest in-depth review and analysis for 2026." href="/en/reviews/1/" rating={4.9} price="Verified" />
-      <Card title="Best Open Source Scrapers" description="A comprehensive breakdown of features, pricing, and pros/cons." href="/en/reviews/2/" rating={4.7} price="Top Choice" />
-      <Card title="Monica AI Review" description="Everything you need to know before making a decision." href="/en/reviews/3/" rating={4.5} price="Updated" />
-    </div>
-  </section>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={pageDescription} />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh" content="0;url=/en/" />
+    <link rel="canonical" href="https://allaibrowser.com/" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a href="/en/">Redirecting to the English version…</a>
+  </body>
+</html>

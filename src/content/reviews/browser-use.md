@@ -1,14 +1,17 @@
 ---
 title: "Browser Use"
 description: "Browser Use is an open-source LLM framework that orchestrates a headless Chromium browser via Playwright to automate complex web interactions. It leverages DOM parsing and custom stealth plugins to achieve high success rates while minimizing token consumption."
-agentType: "Headless Browser, LLM Framework"
-domParsingSpeed: "3.2s"
-captchaBypassRate: "89%"
-successRate: "96%"
-tokenCostPerTask: "12k tokens"
-pros: ["Open-source with active community","Low token cost per task","High success rate on complex workflows"]
-cons: ["Requires local setup and Python environment","Limited built-in stealth for anti-bot detection","No native cloud deployment"]
+platform: "browser-use"
+score: 9.2
+openSource: true
 githubUrl: "https://github.com/nicepkg/browser-use"
+githubStars: 28000
+pricing: "free"
+verdictLabel: "buy"
+featured: true
+useCases: ["Web Scraping", "AI Agents", "Form Automation", "Data Extraction"]
+pros: ["Open-source with active community", "Low token cost per task", "High success rate on complex workflows", "Multiple LLM backend support"]
+cons: ["Requires local setup and Python environment", "Limited built-in stealth for anti-bot detection", "No native cloud deployment", "Sparse documentation"]
 publishedAt: 2026-05-31
 ---
 

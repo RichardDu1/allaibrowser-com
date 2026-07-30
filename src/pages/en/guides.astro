@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = 'Guides & Tutorials — AI Browser Tools';
+const pageDescription = 'Learn how to use AI browser tools, web agents, and automation frameworks with our guides and tutorials.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://allaibrowser.com/en/guides/"
+>
+  <main class="container mx-auto px-6 max-w-5xl pt-24 pb-24">
+    <header class="mb-12">
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">Guides &amp; Tutorials</h1>
+      <p class="text-lg text-muted max-w-2xl">Learn how to use AI browser tools effectively. Step-by-step guides, best practices, and expert tips.</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <span class="text-xs font-medium text-primary-400 bg-primary-500/10 px-2 py-0.5 rounded-full border border-primary-500/20 mb-3 inline-block">Getting Started</span>
+        <h2 class="text-lg font-bold text-white group-hover:text-primary-400 transition-colors mb-2">Getting Started with Browser Use</h2>
+        <p class="text-sm text-muted mb-4">A step-by-step guide to setting up and running your first Browser Use agent for web automation.</p>
+        <span class="text-xs text-muted">Coming soon</span>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <span class="text-xs font-medium text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded-full border border-accent-500/20 mb-3 inline-block">Tutorial</span>
+        <h2 class="text-lg font-bold text-white group-hover:text-accent-400 transition-colors mb-2">Building a Web Scraper with Stagehand</h2>
+        <p class="text-sm text-muted mb-4">Learn how to use Stagehand's natural language interface to build a production-ready web scraper.</p>
+        <span class="text-xs text-muted">Coming soon</span>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <span class="text-xs font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 mb-3 inline-block">Best Practices</span>
+        <h2 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">Playwright vs Puppeteer: Which to Choose</h2>
+        <p class="text-sm text-muted mb-4">An in-depth guide to choosing between Playwright and Puppeteer for your automation needs.</p>
+        <span class="text-xs text-muted">Coming soon</span>
+      </div>
+
+      <div class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <span class="text-xs font-medium text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full border border-purple-500/20 mb-3 inline-block">Advanced</span>
+        <h2 class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors mb-2">AI-Powered Data Extraction with AgentQL</h2>
+        <p class="text-sm text-muted mb-4">How to use AgentQL's natural language queries to extract structured data from any website.</p>
+        <span class="text-xs text-muted">Coming soon</span>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

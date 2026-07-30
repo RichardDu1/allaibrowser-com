@@ -1,30 +1,95 @@
 ---
-// About page
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumb from '../../components/Breadcrumb.astro';
 
-const title = 'About Find the AI For That (2026)';
-const description = 'We help you discover, compare, and choose the best AI tools for every task. Independent reviews, no BS.';
+const pageTitle = 'About — AI Browser Reviews';
+const pageDescription = 'We are the first dedicated review site for AI browser tools and web agents. Independent, thorough, and data-driven.';
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
-  schema={{ type: 'Organization', data: {} }}
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://allaibrowser.com/en/about/"
 >
-  <Breadcrumb />
-  <section class="container py-16 max-w-3xl">
-    <h1 class="text-3xl font-bold mb-6">About Find the AI For That</h1>
-    <div class="prose prose-lg max-w-none text-muted space-y-4">
-      <p>We're on a mission to help everyone — from solo creators to enterprise teams — find the right AI tool for the job. The AI landscape changes weekly, and keeping up is exhausting. We do the research so you don't have to.</p>
-      <p>Every tool on this site is independently tested. We never accept payment for positive reviews. Affiliate links are clearly marked, and we disclose them transparently.</p>
-      <h2 class="text-xl font-bold text-text mt-8 mb-3">Our Process</h2>
-      <ol class="list-decimal list-inside space-y-2">
-        <li>Hands-on testing — we use every tool we review</li>
-        <li>Side-by-side comparisons — same prompts, same tasks</li>
-        <li>Regular updates — tools change, so do our reviews</li>
-        <li>Community feedback — your experience matters</li>
-      </ol>
+  <main class="container mx-auto px-6 max-w-4xl pt-24 pb-24">
+    <header class="mb-12">
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">About AI Browser Reviews</h1>
+      <p class="text-lg text-muted max-w-3xl">We are the first dedicated review site for AI browser tools and web agents. Our mission is to help developers and teams choose the right tools for their browser automation needs.</p>
+    </header>
+
+    <div class="space-y-8">
+      <section class="glass-card rounded-xl p-8">
+        <h2 class="text-xl font-bold text-white mb-4">Why We Built This</h2>
+        <p class="text-muted leading-relaxed mb-4">
+          The AI browser and web agent space is exploding. Browser Use, Stagehand, Playwright, Puppeteer, AgentQL, Browserbase — every week there's a new tool or framework. But there's no dedicated resource that tests, compares, and reviews these tools objectively.
+        </p>
+        <p class="text-muted leading-relaxed">
+          We built AI Browser Reviews to fill that gap. We put every tool through the same rigorous tests, measure the same metrics, and provide honest, data-driven recommendations.
+        </p>
+      </section>
+
+      <section class="glass-card rounded-xl p-8">
+        <h2 class="text-xl font-bold text-white mb-4">Our Testing Methodology</h2>
+        <div class="space-y-4">
+          <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-lg bg-primary-500/10 border border-primary-500/20 flex items-center justify-center shrink-0">
+              <span class="text-primary-400 font-bold text-sm">1</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white mb-1">Real-World Scenarios</h3>
+              <p class="text-sm text-muted">We test each tool on actual web automation tasks — form filling, multi-step navigation, data extraction, dynamic content handling, and anti-bot evasion.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-lg bg-accent-500/10 border border-accent-500/20 flex items-center justify-center shrink-0">
+              <span class="text-accent-400 font-bold text-sm">2</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white mb-1">Standardized Scoring</h3>
+              <p class="text-sm text-muted">Every tool is scored on the same 0-10 scale across: success rate, speed, token efficiency, anti-detection, developer experience, and documentation quality.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+              <span class="text-purple-400 font-bold text-sm">3</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white mb-1">Continuous Updates</h3>
+              <p class="text-sm text-muted">We re-test tools regularly as new versions are released. Rankings are updated to reflect the latest performance data.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+              <span class="text-emerald-400 font-bold text-sm">4</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-white mb-1">Independence</h3>
+              <p class="text-sm text-muted">We do not accept payment for rankings. We disclose any affiliate relationships clearly. Our scores reflect our genuine, unbiased assessment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass-card rounded-xl p-8">
+        <h2 class="text-xl font-bold text-white mb-4">What We Cover</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-dark-2 rounded-lg p-4 border border-border">
+            <h3 class="font-semibold text-white text-sm mb-1">Web Agents</h3>
+            <p class="text-xs text-muted">Browser Use, Stagehand, AutoGPT, MultiOn</p>
+          </div>
+          <div class="bg-dark-2 rounded-lg p-4 border border-border">
+            <h3 class="font-semibold text-white text-sm mb-1">Browser Automation</h3>
+            <p class="text-xs text-muted">Playwright, Puppeteer, Selenium</p>
+          </div>
+          <div class="bg-dark-2 rounded-lg p-4 border border-border">
+            <h3 class="font-semibold text-white text-sm mb-1">AI Scraping</h3>
+            <p class="text-xs text-muted">AgentQL, Browserbase, Skyvern</p>
+          </div>
+          <div class="bg-dark-2 rounded-lg p-4 border border-border">
+            <h3 class="font-semibold text-white text-sm mb-1">Testing Tools</h3>
+            <p class="text-xs text-muted">Cypress, Playwright Test, Selenium</p>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
+  </main>
 </BaseLayout>

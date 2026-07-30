@@ -1,26 +1,32 @@
 ---
-// Terms of Use page
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumb from '../../components/Breadcrumb.astro';
 
-const title = 'Terms of Use — Find the AI For That (2026)';
-const description = 'Terms and conditions for using Find the AI For That.';
+const pageTitle = 'Terms of Use — AI Browser Reviews';
+const pageDescription = 'Terms of use for AI Browser Reviews.';
 ---
 
-<BaseLayout title={title} description={description} noindex={true}>
-  <Breadcrumb />
-  <section class="container py-16 max-w-3xl">
-    <h1 class="text-3xl font-bold mb-6">Terms of Use</h1>
-    <div class="prose prose-lg max-w-none text-muted space-y-4">
-      <p><strong>Last updated:</strong> June 2026</p>
-      <h2 class="text-xl font-bold text-text">1. Acceptance</h2>
-      <p>By using this website, you agree to these terms. If you disagree, please discontinue use.</p>
-      <h2 class="text-xl font-bold text-text">2. Content</h2>
-      <p>All content is for informational purposes only. We strive for accuracy but make no guarantees. AI tools change rapidly — verify directly with providers.</p>
-      <h2 class="text-xl font-bold text-text">3. Affiliate Links</h2>
-      <p>We participate in affiliate programs. Purchases through our links may earn us a commission.</p>
-      <h2 class="text-xl font-bold text-text">4. Intellectual Property</h2>
-      <p>All original content is protected by copyright. You may not reproduce without permission.</p>
-    </div>
-  </section>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://allaibrowser.com/en/terms/"
+>
+  <main class="container mx-auto px-6 max-w-4xl pt-24 pb-24 prose prose-invert prose-lg max-w-none
+    prose-headings:font-bold prose-headings:text-white
+    prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-6
+    prose-p:text-muted prose-p:leading-relaxed
+    prose-a:text-primary-400 hover:prose-a:underline
+    prose-strong:text-white
+    prose-li:text-muted">
+    <h1>Terms of Use</h1>
+    <p>Last updated: June 2026</p>
+
+    <h2>Use of Content</h2>
+    <p>All content on this site is for informational purposes only. While we strive for accuracy, we make no guarantees about the completeness or reliability of our reviews and scores.</p>
+
+    <h2>Affiliate Disclosure</h2>
+    <p>Some links on this site are affiliate links. We may earn a commission if you make a purchase through these links. This does not affect our editorial independence or the scores we assign to products.</p>
+
+    <h2>Intellectual Property</h2>
+    <p>All content, design, and code on this site is our intellectual property unless otherwise noted. You may not reproduce or redistribute our content without permission.</p>
+  </main>
 </BaseLayout>

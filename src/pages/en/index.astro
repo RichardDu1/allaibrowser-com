@@ -1,16 +1,26 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Card from '../../components/Card.astro';
 
+const allTools = await getCollection('tools');
 const allReviews = await getCollection('reviews');
-const sortedReviews = allReviews.sort((a, b) => {
-  const parseSuccess = (y) => parseFloat(y.replace(/[^0-9.]/g, '')) || 0;
-  return parseSuccess(b.data.successRate) - parseSuccess(a.data.successRate);
-});
-const topAgents = sortedReviews.slice(0, 3);
 
-const pageTitle = 'All AI Browser | Terminal Benchmarks';
-const pageDescription = 'Hardcore benchmarks and tests for AI browsers, headless agents, and Web UI automation frameworks.';
+// Combine reviews and tools for the full product listing
+const allProducts = [
+  ...allReviews.map(r => ({ ...r, collection: 'reviews' })),
+  ...allTools.map(t => ({ ...t, collection: 'tools' })),
+];
+
+// Get featured products
+const featured = allProducts.filter(p => p.data.featured).sort((a, b) => b.data.score - a.data.score);
+
+// Top 3 highest scored
+const topRated = [...allProducts].sort((a, b) => b.data.score - a.data.score).slice(0, 6);
+
+const pageTitle = 'AI Browsers & Web Agents Reviewed — Tested, Compared, Ranked';
+const pageDescription = 'The first dedicated review site for AI browser tools. We test, compare, and rank Browser Use, Stagehand, Playwright, Puppeteer, AgentQL, Browserbase and more.';
 ---
 
 <BaseLayout
@@ -19,96 +29,199 @@ const pageDescription = 'Hardcore benchmarks and tests for AI browsers, headless
   canonical="https://allaibrowser.com/en/"
   schema={{ type: 'WebSite', data: { description: pageDescription } }}
 >
-  <!-- Cyberpunk Terminal Hero -->
-  <header class="scanline min-h-[70vh] flex flex-col justify-center border-b border-[#27272a] relative overflow-hidden">
-    <!-- Grid Background -->
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(39,39,42,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(39,39,42,0.3)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_10%,transparent_100%)] pointer-events-none -z-10"></div>
-    
-    <div class="container max-w-5xl mx-auto px-6 z-10">
-      <div class="mb-4 text-primary text-sm font-bold animate-pulse">
-        > system initialization sequence complete...
-      </div>
-      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 uppercase tracking-tighter">
-        Benchmarking<br/>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">The Autonomous Web</span>
-      </h1>
-      <p class="text-lg md:text-xl text-muted max-w-2xl mb-10 leading-relaxed border-l-2 border-accent pl-4">
-        We execute automated tests against Browser Use, Stagehand, and proprietary AI browsers. We measure DOM traversal speed, visual CAPTCHA solve rates, and deterministic reliability.
-      </p>
+  <Hero
+    title=""
+    subtitle="We put AI browser tools through real-world tests. See how Browser Use, Stagehand, Playwright, Puppeteer, AgentQL, and Browserbase stack up in scraping, automation, and AI agent tasks."
+    ctaText="Browse All Products →"
+    ctaLink="/en/products/"
+  />
 
-      <div class="flex flex-col sm:flex-row gap-4 font-bold text-sm">
-        <a href="/en/reviews/" class="px-6 py-3 bg-primary text-black hover:bg-white transition-colors border border-primary text-center uppercase tracking-widest shadow-[0_0_15px_rgba(34,197,94,0.4)]">
-          > execute_tests()
-        </a>
-        <a href="https://github.com/allaibrowser" target="_blank" class="px-6 py-3 bg-transparent text-white border border-[#27272a] hover:border-accent hover:text-accent transition-colors text-center uppercase tracking-widest">
-          > read_docs()
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Live Terminal Output Mock -->
-  <section id="benchmarks" class="container max-w-5xl mx-auto px-6 py-20">
+  <!-- Featured Comparison Table -->
+  <section class="container mx-auto px-6 max-w-7xl py-16 animate-fade-in-up" style="animation-delay: 0.3s">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl text-white font-bold uppercase tracking-widest border-b border-[#27272a] pb-2 inline-block">
-        Latest Benchmark Runs
+      <h2 class="text-xl md:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+        <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+        Top Tools at a Glance
       </h2>
-      <div class="text-accent text-xs animate-pulse">[LIVE: RUNNING]</div>
+      <a href="/en/products/" class="text-sm text-primary-400 hover:text-primary-300 font-medium transition-colors">
+        View All →
+      </a>
     </div>
 
-    <!-- Terminal Window -->
-    <div class="bg-[#09090b] border border-[#27272a] rounded shadow-2xl overflow-hidden font-mono text-sm">
-      <div class="bg-[#18181b] px-4 py-2 border-b border-[#27272a] flex items-center gap-2">
-        <div class="w-3 h-3 bg-[#52525b] rounded-full"></div>
-        <div class="w-3 h-3 bg-[#52525b] rounded-full"></div>
-        <div class="w-3 h-3 bg-[#52525b] rounded-full"></div>
-        <div class="ml-4 text-xs text-[#52525b]">root@allaibrowser:~# htop --sort success_rate</div>
-      </div>
-      
-      <div class="p-6 space-y-6">
-        {topAgents.length > 0 ? topAgents.map((agent, index) => {
-          const rawRate = parseFloat(agent.data.successRate.replace(/[^0-9.]/g, '')) || 0;
-          let statusColor = "text-primary";
-          let barColor = "bg-primary shadow-[0_0_10px_rgba(34,197,94,0.8)]";
-          let statusText = `PASS (${agent.data.successRate})`;
-          
-          if (rawRate < 50) {
-            statusColor = "text-red-500";
-            barColor = "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]";
-            statusText = `FAIL (${agent.data.successRate})`;
-          } else if (rawRate < 90) {
-            statusColor = "text-yellow-500";
-            barColor = "bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.8)]";
-            statusText = `WARN (${agent.data.successRate})`;
-          }
-          
-          const taskId = String(index + 1).padStart(2, '0');
-          
-          return (
-            <a href={`/en/reviews/${agent.id.split('/').pop()}`} class="block group">
-              <div class="flex justify-between text-white mb-2">
-                <span class="group-hover:text-accent transition-colors">[TASK_${taskId}] {agent.data.title}</span>
-                <span class={statusColor}>{statusText}</span>
-              </div>
-              <div class="w-full bg-[#18181b] h-2 rounded overflow-hidden">
-                <div class={`${barColor} h-full w-[${rawRate}%]`}></div>
-              </div>
-              <div class="text-[#52525b] text-xs mt-2 group-hover:text-white transition-colors">
-                > DOM Parsing: {agent.data.domParsingSpeed} | Tokens: {agent.data.tokenCostPerTask} | CAPTCHA: {agent.data.captchaBypassRate}
-              </div>
-            </a>
-          );
-        }) : (
-           <div class="text-[#52525b] text-xs">> WAITING FOR STDOUT... (Run generation script)</div>
-        )}
-      </div>
+    <div class="overflow-x-auto rounded-xl border border-border">
+      <table class="comparison-table w-full min-w-[600px]">
+        <thead>
+          <tr class="bg-dark-2">
+            <th>Tool</th>
+            <th>Score</th>
+            <th>Pricing</th>
+            <th>Open Source</th>
+            <th>Best For</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          {topRated.map((product) => {
+            const href = product.collection === 'reviews' 
+              ? `/en/reviews/${product.id.split('/').pop()}/` 
+              : `/en/tools/${product.id.split('/').pop()}/`;
+            const scoreColor = product.data.score >= 9 ? 'text-emerald-400' : product.data.score >= 7 ? 'text-primary-400' : product.data.score >= 5 ? 'text-yellow-400' : 'text-red-400';
+            const verdictBadge = product.data.verdictLabel === 'buy' ? 'verdict-buy' : product.data.verdictLabel === 'wait' ? 'verdict-wait' : 'verdict-skip';
+            return (
+              <tr class="group hover:bg-white/[0.02] transition-colors cursor-pointer" onclick={`window.location='${href}'`}>
+                <td class="font-medium text-white">
+                  <a href={href} class="hover:text-primary-400 transition-colors">
+                    {product.data.title}
+                  </a>
+                </td>
+                <td>
+                  <span class={`font-bold text-lg ${scoreColor}`}>{product.data.score}</span>
+                  <span class="text-muted text-xs">/10</span>
+                </td>
+                <td class="capitalize">{product.data.pricing}</td>
+                <td>
+                  {product.data.openSource ? (
+                    <span class="text-emerald-400 text-xs font-medium">✓ Yes</span>
+                  ) : (
+                    <span class="text-muted text-xs">—</span>
+                  )}
+                </td>
+                <td class="text-sm text-muted">
+                  {product.data.useCases?.slice(0, 2).join(', ')}
+                </td>
+                <td>
+                  <span class={`text-xs font-semibold px-2.5 py-1 rounded-md ${verdictBadge}`}>
+                    {product.data.verdictLabel === 'buy' ? '✓ Buy' : product.data.verdictLabel === 'wait' ? '○ Wait' : '✕ Skip'}
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
-    
-    <div class="mt-8 text-center">
-      <a href="/en/reviews/" class="text-accent hover:text-white text-sm uppercase tracking-widest font-bold underline decoration-accent/50 underline-offset-4 transition-colors">
-        [ View Full Registry ]
+  </section>
+
+  <!-- Category Navigation -->
+  <section class="container mx-auto px-6 max-w-7xl py-16 animate-fade-in-up" style="animation-delay: 0.4s">
+    <h2 class="text-xl md:text-2xl font-bold mb-8 text-white tracking-tight flex items-center gap-3">
+      <span class="w-1.5 h-6 bg-accent-500 rounded-full"></span>
+      Browse by Category
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <a href="/en/best-ofs/web-agents/" class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <div class="w-10 h-10 rounded-lg bg-primary-500/10 border border-primary-500/20 flex items-center justify-center mb-4 group-hover:bg-primary-500/20 transition-colors">
+          <svg class="w-5 h-5 text-primary-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 7.07 17.07A10 10 0 0 1 4.93 4.93 10 10 0 0 1 12 2z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-primary-400 transition-colors">Web Agents</h3>
+        <p class="text-sm text-muted">Browser Use, Stagehand, and other AI-powered web agents</p>
+      </a>
+      <a href="/en/best-ofs/browser-automation/" class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <div class="w-10 h-10 rounded-lg bg-accent-500/10 border border-accent-500/20 flex items-center justify-center mb-4 group-hover:bg-accent-500/20 transition-colors">
+          <svg class="w-5 h-5 text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-accent-400 transition-colors">Browser Automation</h3>
+        <p class="text-sm text-muted">Playwright, Puppeteer, Selenium — test and automate</p>
+      </a>
+      <a href="/en/best-ofs/ai-scraping/" class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4 group-hover:bg-purple-500/20 transition-colors">
+          <svg class="w-5 h-5 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-purple-400 transition-colors">AI Scraping</h3>
+        <p class="text-sm text-muted">AgentQL, Browserbase, and intelligent data extraction</p>
+      </a>
+      <a href="/en/best-ofs/testing-tools/" class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4 group-hover:bg-emerald-500/20 transition-colors">
+          <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">Testing Tools</h3>
+        <p class="text-sm text-muted">Cypress, Playwright Test, and end-to-end frameworks</p>
+      </a>
+      <a href="/en/best-ofs/browser-extensions/" class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4 group-hover:bg-amber-500/20 transition-colors">
+          <svg class="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-amber-400 transition-colors">Browser Extensions</h3>
+        <p class="text-sm text-muted">AI-powered browser plugins and tools</p>
+      </a>
+      <a href="/en/products/" class="glass-card rounded-xl p-6 hover:border-primary-500/30 transition-all duration-300 group">
+        <div class="w-10 h-10 rounded-lg bg-white/5 border border-border flex items-center justify-center mb-4 group-hover:bg-white/10 transition-colors">
+          <svg class="w-5 h-5 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        </div>
+        <h3 class="font-semibold text-white mb-1 group-hover:text-white transition-colors">View All Products</h3>
+        <p class="text-sm text-muted">Browse the complete directory of AI browser tools</p>
       </a>
     </div>
   </section>
 
+  <!-- Featured Products Grid -->
+  {featured.length > 0 && (
+    <section class="container mx-auto px-6 max-w-7xl py-16 animate-fade-in-up" style="animation-delay: 0.5s">
+      <h2 class="text-xl md:text-2xl font-bold mb-8 text-white tracking-tight flex items-center gap-3">
+        <span class="w-1.5 h-6 bg-primary-500 rounded-full"></span>
+        Featured Reviews
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featured.map((product) => {
+          const href = product.collection === 'reviews' 
+            ? `/en/reviews/${product.id.split('/').pop()}/` 
+            : `/en/tools/${product.id.split('/').pop()}/`;
+          return (
+            <Card
+              title={product.data.title}
+              description={product.data.description}
+              href={href}
+              score={product.data.score}
+              verdictLabel={product.data.verdictLabel}
+              pricing={product.data.pricing}
+              useCases={product.data.useCases}
+              githubStars={product.data.githubStars}
+              featured={product.data.featured}
+            />
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  <!-- How We Test Section -->
+  <section class="container mx-auto px-6 max-w-7xl py-16 animate-fade-in-up" style="animation-delay: 0.6s">
+    <div class="glass-card rounded-2xl p-8 md:p-12 border-primary-500/10">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 tracking-tight">How We Test</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-lg bg-primary-500/10 border border-primary-500/20 flex items-center justify-center shrink-0">
+            <span class="text-primary-400 font-bold text-sm">1</span>
+          </div>
+          <div>
+            <h3 class="font-semibold text-white mb-1">Real-World Scenarios</h3>
+            <p class="text-sm text-muted leading-relaxed">We test each tool on actual web automation tasks — form filling, multi-step navigation, data extraction, and dynamic content handling.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-lg bg-accent-500/10 border border-accent-500/20 flex items-center justify-center shrink-0">
+            <span class="text-accent-400 font-bold text-sm">2</span>
+          </div>
+          <div>
+            <h3 class="font-semibold text-white mb-1">Standardized Metrics</h3>
+            <p class="text-sm text-muted leading-relaxed">Every tool is scored on the same criteria: success rate, speed, token efficiency, anti-detection, developer experience, and documentation quality.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+            <span class="text-purple-400 font-bold text-sm">3</span>
+          </div>
+          <div>
+            <h3 class="font-semibold text-white mb-1">No Affiliation</h3>
+            <p class="text-sm text-muted leading-relaxed">We are independent reviewers. We don't accept payment for rankings, and we disclose any affiliate relationships clearly. Our scores reflect our genuine assessment.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-border">
+        <a href="/en/how-we-test/" class="text-sm text-primary-400 hover:text-primary-300 font-medium transition-colors">
+          Read our full methodology →
+        </a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

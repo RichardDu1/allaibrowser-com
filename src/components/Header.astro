@@ -1,36 +1,46 @@
 ---
-// Header.astro — Sticky navigation with mobile hamburger menu
+// Header.astro — AI Browser Review Site Navigation
 const navItems = [
-  { label: 'Home', href: '/en/' },
-  { label: 'Categories', href: '/en/categories/' },
-  { label: 'Latest', href: '/en/latest/' },
-  { label: 'Compare', href: '/en/compare/' },
-  { label: 'Blog', href: '/en/blog/' },
+  { label: 'Products', href: '/en/products/' },
+  { label: 'Comparisons', href: '/en/comparisons/' },
+  { label: 'Best Of', href: '/en/best-ofs/' },
+  { label: 'Guides', href: '/en/guides/' },
+  { label: 'About', href: '/en/about/' },
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-[#0d1117]/90 backdrop-blur-sm border-b border-[#21262d]">
-  <div class="container flex items-center justify-between h-16">
-    <a href="/en/" class="font-semibold text-lg text-[#e6edf3] no-underline hover:no-underline tracking-tight">
-      All AI Browser
+<header class="sticky top-0 z-50 bg-dark/80 backdrop-blur-xl border-b border-border supports-[backdrop-filter]:bg-dark/60">
+  <div class="container mx-auto px-6 max-w-7xl flex items-center justify-between h-16">
+    <a href="/en/" class="flex items-center gap-2.5 group">
+      <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 shadow-lg shadow-primary-500/20 group-hover:shadow-primary-500/40 transition-all duration-300 flex items-center justify-center">
+        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 6v12M6 12h12"/>
+        </svg>
+      </div>
+      <span class="font-bold text-lg text-white tracking-tight">AI Browser</span>
+      <span class="text-xs text-primary-400 font-medium bg-primary-500/10 px-2 py-0.5 rounded-full border border-primary-500/20">Reviews</span>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+    <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
       {navItems.map((item) => (
         <a
           href={item.href}
-          class="text-sm font-medium text-muted hover:text-primary transition-colors"
+          class="text-sm font-medium text-muted hover:text-white px-3 py-2 rounded-lg hover:bg-white/5 transition-all duration-200"
         >
           {item.label}
         </a>
       ))}
+      <a href="/en/reviews/" class="ml-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-lg shadow-primary-500/20">
+        All Reviews
+      </a>
     </nav>
 
     <!-- Mobile Hamburger -->
     <button
       id="menu-toggle"
-      class="md:hidden p-2 text-text"
+      class="md:hidden p-2 text-muted hover:text-white transition-colors"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -40,17 +50,20 @@ const navItems = [
     </button>
   </div>
 
-  <!-- Mobile Menu (hidden by default) -->
-  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
-    <nav class="container flex flex-col py-4 gap-3" aria-label="Mobile navigation">
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-dark-2">
+    <nav class="container mx-auto px-6 flex flex-col py-4 gap-1" aria-label="Mobile navigation">
       {navItems.map((item) => (
         <a
           href={item.href}
-          class="text-sm font-medium text-muted hover:text-primary transition-colors py-1"
+          class="text-sm font-medium text-muted hover:text-white py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors"
         >
           {item.label}
         </a>
       ))}
+      <a href="/en/reviews/" class="mt-2 px-4 py-2.5 bg-primary-500 hover:bg-primary-600 text-white text-sm font-medium rounded-lg text-center transition-colors">
+        All Reviews
+      </a>
     </nav>
   </div>
 </header>

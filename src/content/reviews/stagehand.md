@@ -1,14 +1,17 @@
 ---
 title: "Stagehand"
-description: "Stagehand is an open-source, LLM-powered web automation framework built on Playwright that enables natural language-driven browser interactions. It uses a multi-step pipeline with DOM parsing, action planning, and execution, supporting multiple LLM backends like GPT-4 and Claude."
-agentType: "Headless Browser, LLM Framework"
-domParsingSpeed: "2.1s"
-captchaBypassRate: "N/A"
-successRate: "87%"
-tokenCostPerTask: "15k tokens"
-pros: ["Natural language interface reduces scripting overhead","Modular architecture with separate stages for observation, planning, and execution","Supports multiple LLM providers (OpenAI, Anthropic, etc.)"]
-cons: ["High token consumption due to full DOM serialization","No built-in stealth or anti-detection mechanisms","Limited error recovery; failures often require manual intervention"]
+description: "Stagehand is an open-source, LLM-powered web automation framework built on Playwright that enables natural language-driven browser interactions. It uses a multi-step pipeline with DOM parsing, action planning, and execution."
+platform: "stagehand"
+score: 8.5
+openSource: true
 githubUrl: "https://github.com/browserbase/stagehand"
+githubStars: 12000
+pricing: "free"
+verdictLabel: "buy"
+featured: true
+useCases: ["Web Automation", "AI Agents", "Data Extraction", "Testing"]
+pros: ["Natural language interface reduces scripting overhead", "Modular architecture with separate stages", "Supports multiple LLM providers (OpenAI, Anthropic)", "Good documentation and active development"]
+cons: ["High token consumption due to full DOM serialization", "No built-in stealth or anti-detection mechanisms", "Limited error recovery", "Token usage can exceed 30k per step"]
 publishedAt: 2026-05-31
 ---
 
@@ -38,7 +41,7 @@ Stagehand offers a simple API:
 ```javascript
 import { Stagehand } from '@browserbase/stagehand';
 
-const stagehand = new Stagehand({ apiKey: '...' });
+const stagehand = new Stagehand({ apiKey: *** });
 await stagehand.init();
 await stagehand.page.goto('https://example.com');
 await stagehand.act('Click the login button');

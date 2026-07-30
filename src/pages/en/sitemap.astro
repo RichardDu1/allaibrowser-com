@@ -1,40 +1,88 @@
 ---
-// HTML Sitemap — helps crawlers discover all pages
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Breadcrumb from '../../components/Breadcrumb.astro';
 
-const title = 'Sitemap — Find the AI For That (2026)';
-const description = 'Complete list of all pages on Find the AI For That.';
+const allReviews = await getCollection('reviews');
+const allTools = await getCollection('tools');
+const allComparisons = await getCollection('comparisons');
+const allBestOfs = await getCollection('best-ofs');
 
-const pages = [
-  { label: 'Home', href: '/en/' },
-  { label: 'Categories', href: '/en/categories/' },
-  { label: 'AI Writing Tools', href: '/en/categories/writing/' },
-  { label: 'AI Image Generators', href: '/en/categories/image/' },
-  { label: 'AI Coding Assistants', href: '/en/categories/coding/' },
-  { label: 'AI Productivity Tools', href: '/en/categories/productivity/' },
-  { label: 'Latest Reviews', href: '/en/latest/' },
-  { label: 'Compare Tools', href: '/en/compare/' },
-  { label: 'Blog', href: '/en/blog/' },
-  { label: 'AI Tool Finder', href: '/en/finder/' },
-  { label: 'Newsletter', href: '/en/newsletter/' },
-  { label: 'About', href: '/en/about/' },
-  { label: 'Contact', href: '/en/contact/' },
-  { label: 'Privacy Policy', href: '/en/privacy/' },
-  { label: 'Terms of Use', href: '/en/terms/' },
-];
+const pageTitle = 'Sitemap — AI Browser Reviews';
+const pageDescription = 'Sitemap for AI Browser Reviews.';
 ---
 
-<BaseLayout title={title} description={description}>
-  <Breadcrumb />
-  <section class="container py-16 max-w-3xl">
-    <h1 class="text-3xl font-bold mb-8">Sitemap</h1>
-    <ul class="space-y-2">
-      {pages.map((p) => (
-        <li>
-          <a href={p.href} class="text-primary hover:text-primary-dark">{p.label}</a>
-        </li>
-      ))}
-    </ul>
-  </section>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical="https://allaibrowser.com/en/sitemap/"
+>
+  <main class="container mx-auto px-6 max-w-4xl pt-24 pb-24">
+    <h1 class="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tight">Sitemap</h1>
+
+    <div class="space-y-8">
+      <section>
+        <h2 class="text-lg font-bold text-white mb-4 border-b border-border pb-2">Pages</h2>
+        <ul class="space-y-2">
+          <li><a href="/en/" class="text-sm text-muted hover:text-primary-400 transition-colors">Home</a></li>
+          <li><a href="/en/products/" class="text-sm text-muted hover:text-primary-400 transition-colors">Products</a></li>
+          <li><a href="/en/comparisons/" class="text-sm text-muted hover:text-primary-400 transition-colors">Comparisons</a></li>
+          <li><a href="/en/best-ofs/" class="text-sm text-muted hover:text-primary-400 transition-colors">Best Of</a></li>
+          <li><a href="/en/guides/" class="text-sm text-muted hover:text-primary-400 transition-colors">Guides</a></li>
+          <li><a href="/en/about/" class="text-sm text-muted hover:text-primary-400 transition-colors">About</a></li>
+          <li><a href="/en/how-we-test/" class="text-sm text-muted hover:text-primary-400 transition-colors">How We Test</a></li>
+          <li><a href="/en/contact/" class="text-sm text-muted hover:text-primary-400 transition-colors">Contact</a></li>
+          <li><a href="/en/privacy/" class="text-sm text-muted hover:text-primary-400 transition-colors">Privacy Policy</a></li>
+          <li><a href="/en/terms/" class="text-sm text-muted hover:text-primary-400 transition-colors">Terms of Use</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-white mb-4 border-b border-border pb-2">Reviews</h2>
+        <ul class="space-y-2">
+          {allReviews.map(r => {
+            const slug = r.id.split('/').pop();
+            return (
+              <li><a href={`/en/reviews/${slug}/`} class="text-sm text-muted hover:text-primary-400 transition-colors">{r.data.title}</a></li>
+            );
+          })}
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-white mb-4 border-b border-border pb-2">Tools</h2>
+        <ul class="space-y-2">
+          {allTools.map(t => {
+            const slug = t.id.split('/').pop();
+            return (
+              <li><a href={`/en/tools/${slug}/`} class="text-sm text-muted hover:text-primary-400 transition-colors">{t.data.title}</a></li>
+            );
+          })}
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-white mb-4 border-b border-border pb-2">Comparisons</h2>
+        <ul class="space-y-2">
+          {allComparisons.map(c => {
+            const slug = c.id.split('/').pop();
+            return (
+              <li><a href={`/en/comparisons/${slug}/`} class="text-sm text-muted hover:text-primary-400 transition-colors">{c.data.title}</a></li>
+            );
+          })}
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-lg font-bold text-white mb-4 border-b border-border pb-2">Best Of</h2>
+        <ul class="space-y-2">
+          {allBestOfs.map(b => {
+            const slug = b.id.split('/').pop();
+            return (
+              <li><a href={`/en/best-ofs/${slug}/`} class="text-sm text-muted hover:text-primary-400 transition-colors">{b.data.title}</a></li>
+            );
+          })}
+        </ul>
+      </section>
+    </div>
+  </main>
 </BaseLayout>
